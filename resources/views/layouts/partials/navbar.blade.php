@@ -19,11 +19,6 @@
         <a class="navbar-link" href="/documentation/overview/start/">
           Docs
         </a>
-        <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" href="/documentation/overview/start/">
-            Overview
-          </a>
-        </div>
       </div>
     </div>
 
