@@ -12,14 +12,14 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="{{ env('APP_URL') }}">
+      {{-- <a class="navbar-item" href="{{ env('APP_URL') }}">
         Home
       </a>
       <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" href="/documentation/overview/start/">
           Docs
         </a>
-      </div>
+      </div> --}}
     </div>
 
     <div class="navbar-end">
