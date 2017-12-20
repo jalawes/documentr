@@ -14,9 +14,14 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import VueMarkdown from 'vue-markdown'
 
+Vue.component('VueMarkdown', VueMarkdown);
+
+Vue.component('markdown-sample', require('./components/MarkdownSample.vue'));
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });

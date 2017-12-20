@@ -10,7 +10,7 @@
     <div class="hero-body">
         <div class="container has-text-centered">
             <p class="title">Documentr</p>
-            <p class="subtitle">Realtime Markdown Editor for Developers</p>
+            <markdown-sample></markdown-sample>
         </div>
     </div>
 </section>
