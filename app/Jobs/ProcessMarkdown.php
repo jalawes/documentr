@@ -10,6 +10,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class ProcessMarkdown implements ShouldQueue
 {
+    protected $document;
+
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
@@ -19,7 +21,7 @@ class ProcessMarkdown implements ShouldQueue
      */
     public function __construct(Document $document)
     {
-        //
+        $this->document = $document;
     }
 
     /**

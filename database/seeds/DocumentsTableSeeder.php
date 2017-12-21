@@ -1,8 +1,9 @@
 <?php
 
+use App\Document;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class DocumentsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
-        $this->call(DocumentsTableSeeder::class);
+        createMany(Document::class, 10);
     }
 }

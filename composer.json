@@ -30,7 +30,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "tests/functions.php"
+        ]
     },
     "extra": {
         "laravel": {
@@ -48,6 +51,9 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "reset": [
+            "@php artisan migrate:fresh --seed"
         ]
     },
     "config": {
