@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Document;
 use Illuminate\Bus\Queueable;
+use App\Events\MarkdownUpdated;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,6 +33,6 @@ class ProcessMarkdown implements ShouldQueue
      */
     public function handle()
     {
-        //
+        event(new MarkdownUpdated($this->document));
     }
 }

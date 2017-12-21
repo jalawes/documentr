@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use Illuminate\Http\Request;
+use App\Jobs\ProcessMarkdown;
 
 class DocumentController extends Controller
 {
@@ -35,7 +36,11 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $document = Document::create([
+            'user_id' => 1,
+            'body' => $request->body,
+        ]);
+        ProcessMarkdown::dispatch($document);
     }
 
     /**

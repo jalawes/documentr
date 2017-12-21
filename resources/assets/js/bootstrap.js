@@ -49,5 +49,19 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'your-pusher-key'
+    key: 'f3355a256293f9358fcb',
+    cluster: 'us2',
+    encrypted: true
+});
+
+// Echo.channel('sample')
+//     .listen('markdown.updated', (event) => {
+//         console.log(event);
+//     });
+//
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'f3355a256293f9358fcb',
+    cluster: 'us2',
+    encrypted: true
 });
