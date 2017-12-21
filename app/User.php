@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
+    }
+
+    public function join($channel)
+    {
+        return $this->channels()->attach($channel);
+    }
 }
