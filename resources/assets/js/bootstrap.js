@@ -54,11 +54,6 @@ window.Echo = new Echo({
     encrypted: true
 });
 
-// Echo.channel('sample')
-//     .listen('markdown.updated', (event) => {
-//         console.log(event);
-//     });
-//
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: 'f3355a256293f9358fcb',

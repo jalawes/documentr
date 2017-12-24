@@ -5,8 +5,18 @@
         <vue-markdown :source="input"></vue-markdown>
       </p>
     </div>
-    <button class="button" v-if="!trying" @click="trying = true">Try</button>
-    <textarea name="input" id="input" cols="30" rows="10" @input="update" v-html="input" v-if="trying" @blur="trying = false"/>
+    <button class="button"
+            v-if="!trying"
+            @click="startTrying">Try</button>
+    <textarea name="input"
+              id="input-code"
+              class="code textarea"
+              @input="update"
+              v-html="input"
+              v-if="trying"
+              @focus="startTrying"
+              @blur="stopTrying"
+    ></textarea>
   </div>
 </template>
 
@@ -14,9 +24,21 @@
   export default {
     name: 'MarkdownSample',
     methods: {
-      update: _.debounce(function (e) {
-        this.input = e.target.value
-      }, 300)
+      update: _.debounce(function (event) {
+        this.input = event.target.value
+      }, 300),
+      startTrying () {
+        this.trying = true
+      },
+      stopTrying () {
+        this.trying = false
+        this.reset()
+      },
+      reset () {
+        if (!this.input) {
+          this.input = 'Realtime Markdown Editor for Developers'
+        }
+      }
     },
     data () {
       return {
@@ -26,3 +48,10 @@
     }
   }
 </script>
+
+<style scoped lang="scss">
+  .code {
+    font-size: 10px !important;
+    font-family: 'Source Code Pro', monospace !important;
+  }
+</style>
