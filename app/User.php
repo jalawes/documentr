@@ -32,8 +32,18 @@ class User extends Authenticatable
         return $this->belongsToMany(Channel::class);
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+
     public function join($channel)
     {
         return $this->channels()->attach($channel);
+    }
+
+    public function joinGroup($group)
+    {
+        return $this->groups()->attach($group);
     }
 }

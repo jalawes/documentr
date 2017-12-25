@@ -37,7 +37,7 @@
                     </a>
                     <div class="navbar-dropdown is-right is-boxed">
                         <div class="navbar-item">{{ Auth::user()->name }}</div>
-                        <a class="navbar-item" href="#">Profile</a>
+                        <a class="navbar-item" href="{{ route('profile.index') }}">Profile</a>
                         <hr class="navbar-divider">
                         <a href="{{ route('logout') }}"
                            class="navbar-item"
