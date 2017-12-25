@@ -1,7 +1,6 @@
 <template>
   <div class="ui-content is-full-height">
     <div class="columns is-gapless is-full-height">
-
       <!-- code editor -->
       <div class="column is-half">
          <codemirror ref="myCm"
@@ -12,12 +11,10 @@
             @input="onCmCodeChange"
           ></codemirror>
       </div>
-
       <!-- code preview -->
       <div class="column is-half content">
         <vue-markdown :source="code" />
       </div>
-
     </div>
   </div>
 </template>
@@ -99,28 +96,23 @@
     margin: 0px;
     padding: 0px;
   }
-
   #app {
     height: 100%
   }
-
   .ui-content {
     margin-left:  0;
     margin-right: 0;
     height:       100%;
     overflow-y: scroll;
   }
-
   .ui-edit-area {
     height:        100%;
     padding-left:  0 !important;
     padding-right: 0 !important;
   }
-
   .ui-resizble {
     position: relative;
   }
-
   .CodeMirror {
     height: 100%;
   }
