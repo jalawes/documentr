@@ -30,6 +30,14 @@ class Document extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * The group that owns the document.
+     */
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+
     public function path()
     {
         return route('documents.show', $this);
