@@ -12,9 +12,9 @@
                aria-label="more options"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <button class="button is-info">Log Out</button>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
+                {{--<form id="logout-form" action="{{ route('logout') }}" method="POST">--}}
+                    {{--{{ csrf_field() }}--}}
+                {{--</form>--}}
             </a>
         </header>
         <div class="card-content">

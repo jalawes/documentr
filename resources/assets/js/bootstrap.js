@@ -47,16 +47,9 @@ import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: 'f3355a256293f9358fcb',
-    cluster: 'us2',
-    encrypted: true
-});
-
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: 'f3355a256293f9358fcb',
-    cluster: 'us2',
-    encrypted: true
-});
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: 'f3355a256293f9358fcb',
+//     cluster: 'us2',
+//     encrypted: true
+// });

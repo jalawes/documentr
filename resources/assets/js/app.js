@@ -17,6 +17,7 @@ window.Vue = require('vue');
 import VueMarkdown from 'vue-markdown'
 
 Vue.component('VueMarkdown', VueMarkdown);
+Vue.component('CodeEditor', require('./components/CodeEditor'))
 
 Vue.component('Icon', require('./components/Icon'));
 

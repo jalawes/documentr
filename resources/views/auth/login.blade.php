@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <div class="container">
         <div class="column is-3 is-offset-4">
             <form action="{{ route('login') }}" method="POST">

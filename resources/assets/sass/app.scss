@@ -1,6 +1,7 @@
 
 // Global
 @import "global";
+@import "~codemirror/addon/display/fullscreen.css";
 
 // Images
 @import "images";
@@ -20,3 +21,6 @@
 
 // Bootstrap
 @import "~bulma/bulma";
+
+// Code Mirror
+@import "codemirror";
