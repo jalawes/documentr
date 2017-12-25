@@ -20,14 +20,17 @@
                 <tr>
                     <td>
                         <icon name="file-text-o"></icon>
-                        <a href="{{ $document->path() }}">{{ $document->filename }}</a></td>
-                    <td class="has-text-right">{{ $document->created_at->diffForHumans() }}</td>
+                        <a href="{{ $document->path() }}">{{ $document->filename }}</a>
+                    </td>
+                    <td class="has-text-right">
+                        <icon name="clock-o"></icon>
+                        {{ $document->created_at->diffForHumans() }}
+                    </td>
                 </tr>
                 @endforeach
             </table>
         </div>
     </div>
-<br>
 </div>
 
 @endsection
