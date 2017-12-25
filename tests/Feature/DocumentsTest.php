@@ -41,4 +41,13 @@ class DocumentsTest extends TestCase
         $document = create(Document::class);
         static::assertEmpty($document->group);
     }
+
+    public function test_an_authenticated_user_can_view_a_document()
+    {
+        $this->signIn();
+        $document = create(Document::class, [
+            'private' => false
+        ]);
+        $this->get($document->path())->assertSee($document->body);
+    }
 }
