@@ -12,7 +12,7 @@ class DocumentsTest extends TestCase
         $document = create(Document::class);
         $this->signIn();
         $response = $this->get(route('documents.index'));
-        $response->assertSee($document->title);
+        $response->assertSee($document->filename);
     }
 
     public function test_an_authenticated_user_can_create_a_new_document()

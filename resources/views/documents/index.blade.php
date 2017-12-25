@@ -11,7 +11,9 @@
         </tr>
         @foreach($documents as $document)
         <tr>
-            <td><a href="{{ $document->path() }}">{{ $document->title }}</a></td>
+            <td>
+                <icon name="file-text-o"></icon>
+                <a href="{{ $document->path() }}">{{ $document->filename }}</a></td>
             <td class="has-text-right">{{ $document->created_at->diffForHumans() }}</td>
         </tr>
         @endforeach

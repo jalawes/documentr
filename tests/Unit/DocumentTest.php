@@ -33,4 +33,10 @@ class DocumentTest extends TestCase
         $document = create(Document::class);
         static::assertNotEmpty($document->path());
     }
+
+    public function test_a_document_has_a_filename()
+    {
+        $document = create(Document::class);
+        static::assertNotEmpty($document->filename);
+    }
 }
