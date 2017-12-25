@@ -30,8 +30,12 @@
             <img src="https://bulma.io/images/placeholders/32x32.png" class="is-profile-image">
           </figure>
           @else
-          <button class="button">
-            <icon name="github"></icon>
+          <p class="field">
+            <a class="button">
+              <icon name="github"></icon>
+              <span>Github</span>
+            </a>
+          </p>
           </button>
           @endauth
         </div>

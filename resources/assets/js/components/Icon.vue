@@ -1,5 +1,5 @@
 <template>
-<span :class="iconColor">
+<span :class="iconColor" v-cloak>
   <i :class="iconClass"></i>
 </span>
 </template>

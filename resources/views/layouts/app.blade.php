@@ -14,10 +14,8 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-
+    <div id="app" v-cloak>
         @include('layouts.partials.navbar')
-
         @yield('content')
     </div>
 
