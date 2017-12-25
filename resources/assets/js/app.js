@@ -18,6 +18,8 @@ import VueMarkdown from 'vue-markdown'
 
 Vue.component('VueMarkdown', VueMarkdown);
 
+Vue.component('Icon', require('./components/Icon'));
+
 Vue.component('markdown-sample', require('./components/MarkdownSample.vue'));
 Vue.component('markdown-create', require('./components/MarkdownCreate.vue'));
 Vue.component('example-component', require('./components/ExampleComponent.vue'));

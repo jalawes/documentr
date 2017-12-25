@@ -25,9 +25,15 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
+          @auth
           <figure class="image is-32x32">
             <img src="https://bulma.io/images/placeholders/32x32.png" class="is-profile-image">
           </figure>
+          @else
+          <button class="button">
+            <icon name="github"></icon>
+          </button>
+          @endauth
         </div>
       </div>
     </div>
