@@ -15,6 +15,7 @@
 
     <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
+            @auth
             <div class="navbar-item has-dropdown is-hoverable">
                 <div class="navbar-link">
                     Docs
@@ -23,6 +24,7 @@
                     <a class="navbar-item" href="{{ route('documents.create') }}">Create</a>
                 </div>
             </div>
+            @endauth
         </div>
 
         <div class="navbar-end">

@@ -3,7 +3,6 @@
 namespace App\Events;
 
 use App\Document;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -30,16 +29,16 @@ class MarkdownUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('sample');
+        return new PresenceChannel('sample');
     }
 
     /**
- * The event's broadcast name.
- *
- * @return string
- */
+     * The event's broadcast name.
+     *
+     * @return string
+     */
     public function broadcastAs()
     {
-        return 'markdown.updated';
+        return 'markdown.sample';
     }
 }

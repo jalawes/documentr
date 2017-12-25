@@ -45,7 +45,7 @@
         input: 'Realtime Markdown Editor for Developers',
         trying: false
       }
-    }
+    },
   }
 </script>
 

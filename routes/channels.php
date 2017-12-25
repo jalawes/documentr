@@ -1,5 +1,7 @@
 <?php
 
+use App\Document;
+
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -13,4 +15,8 @@
 
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
+});
+
+Broadcast::channel('document.{document}', function ($user, $orderId) {
+    return $user->id === Document::findOrNew($document)->user_id;
 });

@@ -11,7 +11,9 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap-sass');
-} catch (e) {}
+} catch (e) {
+  console.log(e)
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -47,9 +49,9 @@ import Echo from 'laravel-echo'
 
 window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'f3355a256293f9358fcb',
-//     cluster: 'us2',
-//     encrypted: true
-// });
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'f3355a256293f9358fcb',
+    cluster: 'us2',
+    encrypted: true
+});

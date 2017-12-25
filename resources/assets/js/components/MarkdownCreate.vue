@@ -3,7 +3,8 @@
     <div class="columns is-gapless is-full-height">
       <!-- code editor -->
       <div class="column is-half">
-         <codemirror ref="myCm"
+         <codemirror
+            ref="myCm"
             :value="code"
             :options="cmOptions"
             @ready="onCmReady"
@@ -16,6 +17,12 @@
         <vue-markdown :source="code" />
       </div>
     </div>
+    <div class="users-box">
+      <icon name="users"></icon>
+      Connected: {{ users.count }}
+      <icon name="comment"></icon>
+      Channel: {{ users.channel }}
+    </div>
   </div>
 </template>
 
@@ -26,7 +33,8 @@
   // display
   require('codemirror/addon/display/placeholder')
   require('codemirror/addon/display/fullscreen')
-  require('codemirror/addon/display/panel')
+  // require('codemirror/addon/display/panel')
+  import panel from 'codemirror/addon/display/panel'
   // search
   require('codemirror/addon/search/jump-to-line')
   // hints
@@ -48,7 +56,7 @@
           hintOptions:{
             completeSingle: true
           },
-          keyMap: "default",
+          keyMap: 'default',
           lineNumbers: true,
           line: true,
           matchBrackets: true,
@@ -57,15 +65,19 @@
           styleActiveLine: true,
           styleSelectedText: true,
           tabSize: 4,
-          theme: "material",
+          theme: 'material',
           placeholder: '# start by entering a title here',
         },
-        code: ""
+        code: '',
+        users: {
+          count: 0,
+          channel: 'Offline',
+        }
       }
     },
     methods: {
-      addPanel () {
-        codemirror.addPanel('top')
+      addUser () {
+        this.users.count++
       },
       onCmReady(cm) {
         console.log('the editor is readied!', cm)
@@ -76,16 +88,17 @@
       onCmCodeChange(newCode) {
         console.log('this is new code', newCode)
         this.code = newCode
-      }
+      },
     },
     computed: {
       codemirror() {
         return this.$refs.myCm.codemirror
-      }
+      },
     },
     mounted() {
       console.log('this is current codemirror object', this.codemirror)
       // you can use this.codemirror to do something...
+      this.addUser()
     }
   }
 </script>
@@ -97,7 +110,7 @@
     padding: 0px;
   }
   #app {
-    height: 100%
+    height: 90%;
   }
   .ui-content {
     margin-left:  0;
@@ -121,5 +134,10 @@
   }
   .is-full-height {
     height: 100%;
+  }
+  .users-box {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
   }
 </style>
