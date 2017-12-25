@@ -20,7 +20,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $documents = Document::public()->get();
+        $documents = Document::public()->latest()->get();
         return view('documents.index', compact('documents'));
     }
 
