@@ -25,14 +25,9 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
-          <p class="control">
-            <a class="button is-primary" href="https://github.com/jalawes">
-              <span class="icon">
-                <i class="fa fa-github"></i>
-              </span>
-              <span>Github</span>
-            </a>
-          </p>
+          <figure class="image is-32x32">
+            <img src="https://bulma.io/images/placeholders/32x32.png" class="is-profile-image">
+          </figure>
         </div>
       </div>
     </div>
