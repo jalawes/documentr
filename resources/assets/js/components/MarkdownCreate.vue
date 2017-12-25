@@ -1,6 +1,6 @@
 <template>
   <div class="ui-content is-full-height">
-    <div class="columns is-gapless is-full-height">
+    <div class="columns is-1 is-full-height">
       <!-- code editor -->
       <div class="column is-half">
          <codemirror
@@ -14,10 +14,14 @@
       </div>
       <!-- code preview -->
       <div class="column is-half content">
-        <vue-markdown :source="code" />
+        <div class="card is-full-height is-compiled">
+          <div class="card-content">
+            <vue-markdown :source="code" />
+          </div>
+        </div>
       </div>
     </div>
-    <div class="users-box">
+    <div class="users-box box">
       <icon name="users"></icon>
       Connected: {{ users.count }}
       <icon name="comment"></icon>
@@ -106,25 +110,15 @@
 <style>
   html, body {
     height: 100%;
-    margin: 0px;
-    padding: 0px;
   }
   #app {
     height: 90%;
   }
   .ui-content {
-    margin-left:  0;
-    margin-right: 0;
-    height:       100%;
-    overflow-y: scroll;
+    height: 100%;
   }
   .ui-edit-area {
-    height:        100%;
-    padding-left:  0 !important;
-    padding-right: 0 !important;
-  }
-  .ui-resizble {
-    position: relative;
+    height: 100%;
   }
   .CodeMirror {
     height: 100%;
@@ -139,5 +133,8 @@
     position: absolute;
     bottom: 10px;
     right: 5px;
+  }
+  .is-compiled {
+    overflow-y: scroll;
   }
 </style>
