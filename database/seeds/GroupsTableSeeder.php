@@ -1,9 +1,9 @@
 <?php
 
-use App\Document;
+use App\Group;
 use Illuminate\Database\Seeder;
 
-class DocumentsTableSeeder extends Seeder
+class GroupsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class DocumentsTableSeeder extends Seeder
      */
     public function run()
     {
-        createMany(Document::class, 30);
+        createMany(Group::class, random_int(10, 20));
     }
 }

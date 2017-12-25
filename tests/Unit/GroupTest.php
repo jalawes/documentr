@@ -12,4 +12,15 @@ class GroupTest extends TestCase
         $group = create(Group::class);
         static::assertNotEmpty($group->name);
     }
+
+    public function test_a_group_can_be_private()
+    {
+        create(Group::class, [
+            'private' => true,
+        ]);
+        create(Group::class, [
+            'private' => false,
+        ]);
+        static::assertCount(1, Group::public()->get());
+    }
 }

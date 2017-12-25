@@ -14,7 +14,8 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::public()->latest()->get();
+        return view('groups.index', compact('groups'));
     }
 
     /**

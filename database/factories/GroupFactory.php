@@ -1,9 +1,12 @@
 <?php
 
+use App\Group;
 use Faker\Generator as Faker;
 
-$factory->define(App\Group::class, function (Faker $faker) {
+$factory->define(Group::class, function (Faker $faker) {
     return [
-        'name' => $faker->company
+        'description' => $faker->paragraph,
+        'name'        => $faker->company,
+        'private'     => $faker->boolean,
     ];
 });

@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use App\Group;
+use App\User;
 use Tests\TestCase;
 
 class GroupsTest extends TestCase
@@ -24,5 +24,15 @@ class GroupsTest extends TestCase
         $user->joinGroup($group_one);
         $user->joinGroup($group_two);
         static::assertCount(2, $user->groups);
+    }
+
+    public function test_an_authenticated_user_can_browse_groups()
+    {
+        $group = create(Group::class, [
+            'private' => false,
+        ]);
+        $this->signIn();
+        $response = $this->get(route('groups.index'));
+        $response->assertSee($group->name);
     }
 }

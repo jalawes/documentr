@@ -8,15 +8,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Documentr') }}</title>
+    <title>{{ config('app.name', 'Documentr') }}: @yield('title')</title>
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" v-cloak>
+    <div class="container">
         @include('layouts.partials.navbar')
-        @yield('content')
+        <section class="section">
+            <div id="app" v-cloak>
+                @yield('content')
+            </div>
+        </section>
+
     </div>
 
     <!-- Scripts -->
