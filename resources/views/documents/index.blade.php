@@ -11,7 +11,7 @@
         </tr>
         @foreach($documents as $document)
         <tr>
-            <td>{{ $document->title }}</td>
+            <td><a href="{{ $document->path() }}">{{ $document->title }}</a></td>
             <td class="has-text-right">{{ $document->created_at->diffForHumans() }}</td>
         </tr>
         @endforeach

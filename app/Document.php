@@ -29,4 +29,9 @@ class Document extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function path()
+    {
+        return route('documents.show', $this);
+    }
 }

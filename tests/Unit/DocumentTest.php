@@ -27,4 +27,10 @@ class DocumentTest extends TestCase
         ]);
         static::assertEquals($user->id, $document->owner->id);
     }
+
+    public function test_a_document_has_a_path()
+    {
+        $document = create(Document::class);
+        static::assertNotEmpty($document->path());
+    }
 }
