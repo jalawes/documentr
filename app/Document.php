@@ -21,4 +21,12 @@ class Document extends Model
     {
         return $query->where('private', 0);
     }
+
+    /**
+     * The user that owns the document.
+     */
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

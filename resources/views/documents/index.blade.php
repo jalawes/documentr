@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
 <table class="table">
     @foreach($documents as $document)
-        {{ $document->title }}
+    <tr>
+        <td>{{ $document->title }}</td>
+    </tr>
     @endforeach
 </table>
+
 @endsection
