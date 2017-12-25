@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,7 +20,8 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
+        $documents = Document::public()->get();
+        return view('documents.index');
     }
 
     /**

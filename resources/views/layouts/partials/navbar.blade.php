@@ -21,6 +21,7 @@
                     Docs
                 </div>
                 <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item" href="{{ route('documents.index') }}">Browse</a>
                     <a class="navbar-item" href="{{ route('documents.create') }}">Create</a>
                 </div>
             </div>
