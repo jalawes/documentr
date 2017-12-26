@@ -1,55 +1,38 @@
 <template>
-  <div class="ui-content is-full-height">
-    <div class="columns is-1 is-full-height">
-      <!-- code editor -->
-      <div class="column is-half">
-         <codemirror
-            ref="myCm"
-            :value="code"
-            :options="cmOptions"
-            @ready="onCmReady"
-            @focus="onCmFocus"
-            @input="onCmCodeChange"
-          ></codemirror>
-      </div>
-      <!-- code preview -->
-      <div class="column is-half content">
-        <div class="card is-full-height is-compiled">
-          <div class="card-content">
-            <vue-markdown :source="code" />
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="users-box box">
-      <icon name="users"></icon>
-      Connected: {{ users.count }}
-      <icon name="comment"></icon>
-      Channel: {{ users.channel }}
-    </div>
+  <!-- code editor -->
+  <div class="content">
+    <form @submit.prevent="submit">
+      <codemirror
+        ref="myCm"
+        :value="code"
+        :options="cmOptions"
+        @ready="onCmReady"
+        @focus="onCmFocus"
+        @input="onCmCodeChange"
+      />
+    </form>
   </div>
 </template>
 
 <script>
   import { codemirror } from 'vue-codemirror'
-  // dialog
+
   require('codemirror/addon/dialog/dialog')
-  // display
   require('codemirror/addon/display/placeholder')
   require('codemirror/addon/display/fullscreen')
-  // require('codemirror/addon/display/panel')
-  import panel from 'codemirror/addon/display/panel'
-  // search
   require('codemirror/addon/search/jump-to-line')
-  // hints
   require('codemirror/addon/hint/show-hint')
-  // selection
   require('codemirror/addon/selection/active-line')
 
   export default {
     name: 'MarkdownCreate',
     components: {
       codemirror
+    },
+    props: {
+      document: {
+        required: true
+      }
     },
     data () {
       return {
@@ -69,10 +52,11 @@
           styleActiveLine: true,
           styleSelectedText: true,
           tabSize: 4,
-          theme: 'material',
+          theme: 'mdn-like',
           placeholder: '# start by entering a title here',
         },
         code: '',
+        endPoint: '/documents',
         users: {
           count: 0,
           channel: 'Offline',
@@ -98,11 +82,16 @@
       codemirror() {
         return this.$refs.myCm.codemirror
       },
+      sectionContainer () {
+        return document.getElementById('content')
+      }
     },
     mounted() {
       console.log('this is current codemirror object', this.codemirror)
       // you can use this.codemirror to do something...
       this.addUser()
+      console.log('adding class', this.sectionContainer.classList.add('is-full-height'))
+      this.sectionContainer.classList.add('is-full-height')
     }
   }
 </script>

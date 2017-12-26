@@ -14,16 +14,12 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        @include('layouts.partials.navbar')
-        <section class="section">
-            <div id="app" v-cloak>
-                @yield('content')
-            </div>
-        </section>
-
-    </div>
-
+    @include('layouts.partials.navbar')
+    <section class="section" id="content">
+        <div id="app" v-cloak>
+            @yield('content')
+        </div>
+    </section>
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
 </body>

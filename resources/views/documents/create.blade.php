@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <markdown-create></markdown-create>
+    <markdown-create :document="{{ $document }}"></markdown-create>
 @endsection

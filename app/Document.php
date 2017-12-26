@@ -8,7 +8,8 @@ class Document extends Model
 {
     protected $fillable = [
         'body',
-        'user_id'
+        'filename',
+        'user_id',
     ];
 
     /**

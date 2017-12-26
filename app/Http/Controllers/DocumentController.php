@@ -31,7 +31,12 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        return view('documents.create');
+        $document = Document::create([
+            'user_id' => auth()->user()->id,
+            // 'filename' =>
+        ]);
+
+        return view('documents.create', compact('document'));
     }
 
     /**

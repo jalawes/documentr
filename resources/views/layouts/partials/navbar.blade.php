@@ -2,7 +2,7 @@
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ env('APP_URL') }}">
             <img src="{{ asset('img/documentr-512w.png') }}"
-                 alt="Documentr: Realtime Markdown Editing for Developers"
+                 alt="{{ env('APP_TAG') }}"
                  width="112"
                  height="28">
         </a>
@@ -20,13 +20,15 @@
                 <div class="navbar-link">Docs</div>
                 <div class="navbar-dropdown is-boxed">
                     <a class="navbar-item" href="{{ route('documents.index') }}">Browse</a>
+                    <hr class="navbar-divider">
                     <a class="navbar-item" href="{{ route('documents.create') }}">Create</a>
                 </div>
             </div>
             <div class="navbar-item has-dropdown is-hoverable">
-                <div class="navbar-link">Groups</div>
+                <div class="navbar-link">Libraries</div>
                 <div class="navbar-dropdown is-boxed">
                     <a class="navbar-item" href="{{ route('libraries.index') }}">Browse</a>
+                    <hr class="navbar-divider">
                     <a class="navbar-item" href="#">Create</a>
                 </div>
             </div>
