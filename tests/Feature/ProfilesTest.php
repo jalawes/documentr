@@ -14,6 +14,7 @@ class ProfilesTest extends TestCase
 
     public function test_an_unauthorized_user_cannot_visit_profile()
     {
-        $this->get(route('profile.index'))->assertStatus(302);
+        $this->assertUnauthenticated();
+        $this->get(route('profile.index'))->assertRedirect(route('login'));
     }
 }

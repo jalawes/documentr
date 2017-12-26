@@ -22,7 +22,8 @@ Route::get('profile', 'ProfileController@index')->name('profile.index');
 
 Route::get('documents', 'DocumentController@index')->name('documents.index');
 Route::get('documents/create', 'DocumentController@create')->name('documents.create');
-Route::post('/documents', 'DocumentController@store')->name('documents.store');
+Route::post('documents', 'DocumentController@store')->name('documents.store');
 Route::get('documents/{document}', 'DocumentController@show')->name('documents.show');
+Route::post('documents/{document}/favorites', 'FavoritesController@store')->name('documents.favorites.store');
 
 Route::get('libraries', 'LibraryController@index')->name('libraries.index');

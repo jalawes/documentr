@@ -2,15 +2,32 @@
 
 namespace App;
 
+use App\Traits\Favoritable;
 use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
+
+    use Favoritable;
+
     protected $fillable = [
         'body',
-        'filename',
+        'title',
         'user_id',
     ];
+
+    protected $with = [
+        'owner',
+    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope('favorites', function ($builder) {
+            $builder->with('favorites');
+            $builder->withCount('favorites');
+        });
+    }
 
     /**
      * Scope a query to only include public documents.

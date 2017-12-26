@@ -19,7 +19,7 @@
             <tr>
                 <td>
                     <icon name="file-text-o"></icon>
-                    <a href="{{ $document->path() }}">{{ $document->filename }}</a>
+                    <a href="{{ $document->path() }}">{{ $document->title }}</a>
                 </td>
                 <td>
                     <icon name="user"></icon>

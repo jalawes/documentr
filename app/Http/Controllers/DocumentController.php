@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Document;
-use App\Jobs\ProcessMarkdown;
 use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')
+             ->except(['index', 'show']);
     }
 
     /**
@@ -31,12 +31,7 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        $document = Document::create([
-            'user_id' => auth()->user()->id,
-            // 'filename' =>
-        ]);
-
-        return view('documents.create', compact('document'));
+        return view('documents.create');
     }
 
     /**
@@ -47,11 +42,20 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        $document = Document::create([
-            'user_id' => 1,
-            'body' => $request->body,
+        $this->validate($request, [
+            'body'       => 'required',
+            'library_id' => 'integer|exists:libraries,id',
+            'title'      => 'required',
         ]);
-        ProcessMarkdown::dispatch($document);
+
+        $document = Document::create([
+            'body'       => request('body'),
+            'library_id' => request('library_id') ?? null,
+            'title'      => request('title'),
+            'user_id'    => auth()->id(),
+        ]);
+        // jam: ProcessMarkdown::dispatch($document);
+        return redirect($document->path());
     }
 
     /**

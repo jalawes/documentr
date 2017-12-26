@@ -19,7 +19,7 @@ class ProcessMarkdown implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param \App\Document $document
      */
     public function __construct(Document $document)
     {
@@ -33,6 +33,6 @@ class ProcessMarkdown implements ShouldQueue
      */
     public function handle()
     {
-        event(new MarkdownUpdated($this->document));
+        // event(new MarkdownUpdated($this->document));
     }
 }

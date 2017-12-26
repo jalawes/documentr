@@ -1,16 +1,14 @@
 <template>
   <!-- code editor -->
   <div class="content">
-    <form @submit.prevent="submit">
-      <codemirror
-        ref="myCm"
-        :value="code"
-        :options="cmOptions"
-        @ready="onCmReady"
-        @focus="onCmFocus"
-        @input="onCmCodeChange"
-      />
-    </form>
+    <codemirror
+      ref="myCm"
+      :value="code"
+      :options="cmOptions"
+      @ready="onCmReady"
+      @focus="onCmFocus"
+      @input="onCmCodeChange"
+    />
   </div>
 </template>
 
@@ -28,11 +26,6 @@
     name: 'MarkdownCreate',
     components: {
       codemirror
-    },
-    props: {
-      document: {
-        required: true
-      }
     },
     data () {
       return {

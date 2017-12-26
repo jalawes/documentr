@@ -13,14 +13,16 @@ class LibraryTest extends TestCase
         static::assertNotEmpty($library->name);
     }
 
-    public function test_a_library_can_be_private()
+    public function test_libraries_have_public_scope()
     {
         create(Library::class, [
             'private' => true,
         ]);
+
         create(Library::class, [
             'private' => false,
         ]);
+
         static::assertCount(1, Library::public()->get());
     }
 }

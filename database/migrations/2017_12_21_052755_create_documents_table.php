@@ -17,9 +17,9 @@ class CreateDocumentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('library_id')->nullable();
-            $table->string('filename');
+            $table->string('title');
             $table->text('body');
-            $table->boolean('private');
+            $table->boolean('private')->default(false);
             $table->timestamps();
         });
     }
