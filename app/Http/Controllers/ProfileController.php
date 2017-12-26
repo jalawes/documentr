@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Profile;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -20,8 +19,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        return view('profiles.index', compact('user'));
+        return view('profiles.index', [
+            'profile_user' => auth()->user()->load('documents'),
+        ]);
     }
 
     /**

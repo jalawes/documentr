@@ -40,11 +40,11 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                         <figure class="image is-32x32">
-                            <img src="https://bulma.io/images/placeholders/32x32.png" class="is-profile-image">
+                            <img src="{{ auth()->user()->photo_path }}" class="is-profile-image">
                         </figure>
                     </a>
                     <div class="navbar-dropdown is-right is-boxed">
-                        <div class="navbar-item">{{ Auth::user()->name }}</div>
+                        <div class="navbar-item">{{ auth()->user()->name }}</div>
                         <a class="navbar-item" href="{{ route('profile.index') }}">Profile</a>
                         <hr class="navbar-divider">
                         <a href="{{ route('logout') }}"

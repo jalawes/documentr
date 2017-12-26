@@ -17,10 +17,25 @@ use Faker\Generator as Faker;
 $factory->define(User::class, function (Faker $faker) {
     static $password;
 
+    $sex = $faker->randomElement(['male', 'female']);
+
+    if ($sex === 'male') {
+        $title      = $faker->titleMale;
+        $first_name = $faker->firstNameMale;
+        $photo_path = 'https://randomuser.me/api/portraits/men/' . random_int(1, 300) . '.jpg';
+    } elseif ($sex === 'female') {
+        $title      = $faker->titleFemale;
+        $first_name = $faker->firstNameFemale;
+        $photo_path = 'https://randomuser.me/api/portraits/women/' . random_int(1, 300) . '.jpg';
+    }
+
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'photo_path'     => $photo_path,
+        'title'          => $title,
+        'first_name'     => $first_name,
+        'last_name'      => $faker->lastName,
+        'email'          => $faker->unique()->safeEmail,
+        'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
