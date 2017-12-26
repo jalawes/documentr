@@ -26,7 +26,7 @@
             <div class="navbar-item has-dropdown is-hoverable">
                 <div class="navbar-link">Groups</div>
                 <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item" href="{{ route('groups.index') }}">Browse</a>
+                    <a class="navbar-item" href="{{ route('libraries.index') }}">Browse</a>
                     <a class="navbar-item" href="#">Create</a>
                 </div>
             </div>

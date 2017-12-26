@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -32,9 +32,9 @@ class User extends Authenticatable
         return $this->belongsToMany(Channel::class);
     }
 
-    public function groups()
+    public function libraries()
     {
-        return $this->belongsToMany(Group::class);
+        return $this->belongsToMany(Library::class);
     }
 
     public function join($channel)
@@ -42,8 +42,8 @@ class User extends Authenticatable
         return $this->channels()->attach($channel);
     }
 
-    public function joinGroup($group)
+    public function joinLibrary($group)
     {
-        return $this->groups()->attach($group);
+        return $this->libraries()->attach($group);
     }
 }

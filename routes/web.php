@@ -25,4 +25,4 @@ Route::get('documents/create', 'DocumentController@create')->name('documents.cre
 Route::post('/documents', 'DocumentController@store')->name('documents.store');
 Route::get('documents/{document}', 'DocumentController@show')->name('documents.show');
 
-Route::get('groups', 'GroupController@index')->name('groups.index');
+Route::get('libraries', 'LibraryController@index')->name('libraries.index');

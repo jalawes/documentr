@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th>File</th>
+                    <th>Owner</th>
                     <th class="has-text-right">Created</th>
                 </tr>
             </thead>
@@ -19,6 +20,10 @@
                 <td>
                     <icon name="file-text-o"></icon>
                     <a href="{{ $document->path() }}">{{ $document->filename }}</a>
+                </td>
+                <td>
+                    <icon name="user"></icon>
+                    <a href="#">{{ $document->owner->name }}</a>
                 </td>
                 <td class="has-text-right">
                     <icon name="clock-o"></icon>

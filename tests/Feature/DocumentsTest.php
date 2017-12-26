@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Group;
 use App\Document;
+use App\Library;
 use Tests\TestCase;
 
 class DocumentsTest extends TestCase
@@ -27,19 +27,19 @@ class DocumentsTest extends TestCase
         $this->get(route('documents.create'))->assertStatus(302);
     }
 
-    public function test_a_document_can_belong_to_a_group()
+    public function test_a_document_can_belong_to_a_library()
     {
-        $group = create(Group::class);
+        $library = create(Library::class);
         $document = create(Document::class, [
-            'group_id' => $group
+            'library_id' => $library
         ]);
-        static::assertEquals($group->name, $document->group->name);
+        static::assertEquals($library->name, $document->library->name);
     }
 
-    public function test_a_document_can_belong_to_no_group()
+    public function test_a_document_does_not_have_to_belong_to_a_library()
     {
         $document = create(Document::class);
-        static::assertEmpty($document->group);
+        static::assertEmpty($document->library);
     }
 
     public function test_an_authenticated_user_can_view_a_document()

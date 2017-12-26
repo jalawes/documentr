@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateGroupUserTable extends Migration
+class CreateLibraryUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateGroupUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('group_user', function (Blueprint $table) {
+        Schema::create('library_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('group_id');
+            $table->unsignedInteger('library_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateGroupUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_user');
+        Schema::dropIfExists('library_user');
     }
 }

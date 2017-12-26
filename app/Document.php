@@ -33,9 +33,9 @@ class Document extends Model
     /**
      * The group that owns the document.
      */
-    public function group()
+    public function library()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Library::class);
     }
 
     public function path()
