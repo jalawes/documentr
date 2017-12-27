@@ -13,19 +13,40 @@
                         <p class="subtitle is-7">{{ $document->created_at->toFormattedDateString() }}</p>
                     </div>
                     <div class="media-right">
-                        <nav class="level is-mobile">
-                            <div class="level-left">
-                                <form action="{{ route('documents.favorites.store', $document) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="button" {{ $document->isFavorited() ? 'disabled' : '' }}>
+                        <div class="buttons">
+                            <form action="{{ route('documents.favorites.store', $document) }}" method="POST">
+                                {{ csrf_field() }}
+                                @if($document->isFavorited())
+                                    <span class="has-text-warning icon is-small">
+                                        <i class="fa fa-star"></i>
+                                    </span>
+                                @else
+                                    <button type="submit" class="button is-white">
                                         <span class="has-text-warning icon is-small">
                                             <i class="fa fa-star-o"></i>
                                         </span>
-                                        <span>{{ $document->favorites_count }}</span>
                                     </button>
-                                </form>
-                            </div>
-                        </nav>
+                                @endif
+                            </form>
+                        </div>
+                        {{--<nav class="level is-mobile">--}}
+                            {{--<div class="level-left">--}}
+                                {{--<form action="{{ route('documents.favorites.store', $document) }}" method="POST">--}}
+                                    {{--{{ csrf_field() }}--}}
+                                    {{--@if($document->isFavorited())--}}
+                                        {{--<span class="has-text-warning icon is-small">--}}
+                                            {{--<i class="fa fa-star"></i>--}}
+                                        {{--</span>--}}
+                                    {{--@else--}}
+                                    {{--<button type="submit" class="button is-white">--}}
+                                        {{--<span class="has-text-warning icon is-small">--}}
+                                            {{--<i class="fa fa-star-o"></i>--}}
+                                        {{--</span>--}}
+                                    {{--</button>--}}
+                                    {{--@endif--}}
+                                {{--</form>--}}
+                            {{--</div>--}}
+                        {{--</nav>--}}
                     </div>
                 </div>
                 <div class="content">

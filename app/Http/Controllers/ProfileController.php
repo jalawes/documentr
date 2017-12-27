@@ -46,13 +46,11 @@ class ProfileController extends Controller
     public function update(Request $request, User $profile)
     {
         $this->validate($request, [
-            'email'      => 'email|unique:users',
             'first_name' => 'string',
             'last_name'  => 'string',
         ]);
 
         $profile->update([
-            'email'      => request('email'),
             'first_name' => request('first_name'),
             'last_name'  => request('last_name'),
         ]);

@@ -23,9 +23,19 @@ class Document extends Model
     protected static function boot()
     {
         parent::boot();
+
         static::addGlobalScope('favorites', function ($builder) {
             $builder->with('favorites');
             $builder->withCount('favorites');
+        });
+
+        static::created(function ($document) {
+            Activity::create([
+                'user_id'      => auth()->id(),
+                'subject_id'   => $document->id,
+                'subject_type' => Document::class,
+                'type'         => 'created_document',
+            ]);
         });
     }
 

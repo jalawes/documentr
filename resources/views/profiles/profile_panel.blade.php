@@ -10,9 +10,9 @@
     </header>
     <form action="{{ route('profile.update', $profile_user) }}" method="PUT">
         {{ csrf_field() }}
+        {{ method_field('PUT') }}
         <div class="card-content">
             <div class="column is-12">
-
                 {{-- Email Form Field --}}
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
@@ -24,7 +24,7 @@
                                 <input class="input"
                                        type="email"
                                        placeholder="johndoe@example.com"
-                                       name="email"
+                                       readonly
                                        value="{{ $profile_user->email }}">
                                 <span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
                                 @if($errors->has('email'))
@@ -81,10 +81,10 @@
             </div>
         </div>
         <footer class="card-footer">
-            <div class="field">
-                <p class="control card-footer-item">
-                    <button class="button is-info is-small">Save</button>
-                </p>
+            <div class="buttons is-right card-footer-item">
+                <button class="button is-inverted is-small is-pulled-right">
+                    <icon name="floppy-o"></icon>
+                </button>
             </div>
         </footer>
     </form>
