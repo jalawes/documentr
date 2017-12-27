@@ -5,7 +5,7 @@
 @section('content')
     @foreach($libraries as $library)
         <div class="columns">
-            <div class="column is-12">
+            <div class="column is-6 is-offset-3">
                 <div class="card">
                     <header class="card-header">
                         <p class="card-header-title">{{ $library->name }}</p>

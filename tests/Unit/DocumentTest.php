@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\User;
 use App\Document;
+use App\User;
 use Tests\TestCase;
 
 class DocumentTest extends TestCase
@@ -26,7 +26,7 @@ class DocumentTest extends TestCase
         $document = create(Document::class, [
             'user_id' => $user
         ]);
-        dd($user, $document);
+        static::assertTrue($user->isOwnerOf($document));
         static::assertEquals($user->id, $document->owner->id);
     }
 

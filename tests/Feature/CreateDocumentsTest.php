@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Document;
 use App\Library;
+use App\User;
 use Tests\TestCase;
 
 class CreateDocumentsTest extends TestCase
@@ -101,6 +102,29 @@ class CreateDocumentsTest extends TestCase
 
         $this->publishDocument(['library_id' => 9999])
              ->assertSessionHasErrors('library_id');
+    }
+
+    public function test_authorized_users_may_delete_threads()
+    {
+        $user = create(User::class);
+        $document = create(Document::class, ['user_id' => $user]);
+
+        $this->signIn($user);
+        $this->delete(route('documents.destroy', $document))->assertRedirect(route('documents.index'));
+
+        $this->assertDatabaseMissing('documents', $document->toArray());
+    }
+
+    public function test_unauthorized_users_may_not_delete_threads()
+    {
+        $document = create(Document::class);
+
+        $this->delete(route('documents.destroy', $document))->assertRedirect('login');
+        $this->assertDatabaseHas('documents', $document->toArray());
+
+        $this->signIn();
+        $this->delete(route('documents.destroy', $document))->assertStatus(403);
+        $this->assertDatabaseHas('documents', $document->toArray());
     }
 
     protected function publishDocument(array $attributes = [])

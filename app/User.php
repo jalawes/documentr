@@ -71,4 +71,13 @@ class User extends Authenticatable
     {
         return $this->libraries()->attach($group);
     }
+
+    /**
+     * @param
+     * @return bool
+     */
+    public function isOwnerOf($document)
+    {
+        return $document->owner->id === $this->id;
+    }
 }

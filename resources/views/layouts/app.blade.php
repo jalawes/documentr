@@ -15,11 +15,13 @@
 </head>
 <body>
     @include('layouts.partials.navbar')
-    <section class="section" id="content">
+
+    <section class="section">
         <div id="app" v-cloak>
             @yield('content')
         </div>
     </section>
+
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
 </body>

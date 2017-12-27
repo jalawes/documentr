@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -38,12 +39,24 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profile  $profile
+     * @param  \Illuminate\Http\Request $request
+     * @param \App\User                 $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, User $profile)
     {
-        //
+        $this->validate($request, [
+            'email'      => 'email|unique:users',
+            'first_name' => 'string',
+            'last_name'  => 'string',
+        ]);
+
+        $profile->update([
+            'email'      => request('email'),
+            'first_name' => request('first_name'),
+            'last_name'  => request('last_name'),
+        ]);
+
+        return redirect()->back();
     }
 }

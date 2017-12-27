@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use Illuminate\Http\Request;
+use function redirect;
+use function response;
 
 class DocumentController extends Controller
 {
@@ -95,11 +97,20 @@ class DocumentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Document  $document
-     * @return \Illuminate\Http\Response
+     * @param  \App\Document $document
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function destroy(Document $document)
     {
-        //
+        $this->authorize('update', $document);
+
+        $document->delete();
+
+        if (request()->wantsJson()) {
+            return response([], 204);
+        }
+
+        return redirect()->route('documents.index');
     }
 }
