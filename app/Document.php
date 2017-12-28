@@ -3,12 +3,14 @@
 namespace App;
 
 use App\Traits\Favoritable;
+use App\Traits\RecordsActivity;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
 
-    use Favoritable;
+    use Favoritable, RecordsActivity;
 
     protected $fillable = [
         'body',
@@ -24,18 +26,13 @@ class Document extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('favorites', function ($builder) {
+        static::addGlobalScope('favorites', function (Builder $builder) {
             $builder->with('favorites');
             $builder->withCount('favorites');
         });
 
-        static::created(function ($document) {
-            Activity::create([
-                'user_id'      => auth()->id(),
-                'subject_id'   => $document->id,
-                'subject_type' => Document::class,
-                'type'         => 'created_document',
-            ]);
+        static::deleting(function ($document) {
+            $document->favorites->each->delete();
         });
     }
 
@@ -50,17 +47,11 @@ class Document extends Model
         return $query->where('private', 0);
     }
 
-    /**
-     * The user that owns the document.
-     */
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    /**
-     * The group that owns the document.
-     */
     public function library()
     {
         return $this->belongsTo(Library::class);

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Document;
 use Illuminate\Http\Request;
-use function redirect;
-use function response;
 
 class DocumentController extends Controller
 {
@@ -57,7 +55,7 @@ class DocumentController extends Controller
             'user_id'    => auth()->id(),
         ]);
         // jam: ProcessMarkdown::dispatch($document);
-        return redirect($document->path());
+        return redirect($document->path())->with('flash', 'Your document has been published.');
     }
 
     /**

@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Library;
 use App\User;
-use function htmlspecialchars;
 use Tests\TestCase;
 
 class LibrariesTest extends TestCase
@@ -37,7 +36,7 @@ class LibrariesTest extends TestCase
         ]);
         $this->signIn();
         $this->get(route('libraries.index'))
-             ->assertSee(htmlspecialchars($library->name));
+             ->assertSee(urldecode($library->name));
     }
 
     public function test_a_guest_can_browse_libraries()

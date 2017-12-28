@@ -5,29 +5,35 @@
                 <div class="media">
                     <div class="media-left">
                         <figure class="image is-32x32">
-                            <img src="https://bulma.io/images/placeholders/64x64.png" alt="Placeholder image" class="is-profile-image">
+                            <img src="{{ $document->owner->photo_path }}" class="is-profile-image">
                         </figure>
                     </div>
                     <div class="media-content">
-                        <p class="title is-6">{{ $document->owner->name }}</p>
-                        <p class="subtitle is-7">{{ $document->created_at->toFormattedDateString() }}</p>
+                        <a href="{{ $document->owner->path() }}">
+                            <p class="title is-6 has-text-info">{{ $document->owner->name }}</p></a>
+                        <p class="subtitle is-7">{{ $document->created_at->diffForHumans() }}</p>
                     </div>
                     <div class="media-right">
                         <div class="buttons">
-                            <form action="{{ route('documents.favorites.store', $document) }}" method="POST">
-                                {{ csrf_field() }}
-                                @if($document->isFavorited())
-                                    <span class="has-text-warning icon is-small">
-                                        <i class="fa fa-star"></i>
-                                    </span>
-                                @else
+                            {{-- todo: remove this duplication: --}}
+                            @if($document->isFavorited())
+                                <button class="button is-white is-disabled">
+                                        <span class="has-text-warning icon is-small tooltip"
+                                              data-tooltip="{{ $document->favorites_count }} stars">
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                </button>
+                            @else
+                                <form action="{{ route('documents.favorites.store', $document) }}" method="POST">
+                                    {{ csrf_field() }}
                                     <button type="submit" class="button is-white">
-                                        <span class="has-text-warning icon is-small">
+                                        <span class="has-text-warning icon is-small tooltip"
+                                              data-tooltip="{{ $document->favorites_count }} stars">
                                             <i class="fa fa-star-o"></i>
                                         </span>
                                     </button>
-                                @endif
-                            </form>
+                                </form>
+                            @endif
                         </div>
                         {{--<nav class="level is-mobile">--}}
                             {{--<div class="level-left">--}}

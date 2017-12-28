@@ -1,14 +1,15 @@
 <div class="card">
     <header class="card-header">
         <p class="card-header-title">Profile</p>
+        {{-- @if (Auth::user()->) --}}
         <a href="{{ route('logout') }}"
            class="card-header-icon"
            aria-label="more options"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <button class="button is-info is-small">Log Out</button>
+            <button class="button is-small">Log Out</button>
         </a>
     </header>
-    <form action="{{ route('profile.update', $profile_user) }}" method="PUT">
+    <form action="{{ route('profiles.update', $profile_user) }}" method="POST">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <div class="card-content">
@@ -20,7 +21,7 @@
                     </div>
                     <div class="field-body">
                         <div class="field">
-                            <p class="control is-expanded has-icons-left has-icons-right">
+                            <p class="control has-icons-left has-icons-right">
                                 <input class="input"
                                        type="email"
                                        placeholder="johndoe@example.com"
@@ -42,7 +43,7 @@
                     </div>
                     <div class="field-body">
                         <div class="field">
-                            <p class="control is-expanded has-icons-left has-icons-right">
+                            <p class="control has-icons-left has-icons-right">
                                 <input class="input"
                                        type="text"
                                        placeholder="John"
@@ -64,7 +65,7 @@
                     </div>
                     <div class="field-body">
                         <div class="field">
-                            <p class="control is-expanded has-icons-left has-icons-right">
+                            <p class="control has-icons-left has-icons-right">
                                 <input class="input"
                                        type="text"
                                        placeholder="Doe"
@@ -82,7 +83,7 @@
         </div>
         <footer class="card-footer">
             <div class="buttons is-right card-footer-item">
-                <button class="button is-inverted is-small is-pulled-right">
+                <button class="button is-white is-small is-pulled-right tooltip" data-tooltip="Save">
                     <icon name="floppy-o"></icon>
                 </button>
             </div>

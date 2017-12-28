@@ -42,7 +42,7 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document)
     {
-        return $user->isOwnerOf($document);
+        return $user->id === $document->owner->id;
         // TODO: allow admins to update as well
     }
 

@@ -1,4 +1,4 @@
-<nav class="navbar is-transparent">
+<nav class="navbar is-transparent container">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ env('APP_URL') }}">
             <img src="{{ asset('img/documentr-512w.png') }}"
@@ -27,38 +27,42 @@
             <div class="navbar-item has-dropdown is-hoverable">
                 <div class="navbar-link">Libraries</div>
                 <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item" href="{{ route('libraries.index') }}">Browse</a>
+                    <a class="navbar-item" href="{{ route('libraries.index') }}">
+                        <p>
+                            <strong>Browse</strong>
+                            <br>
+                            <small>See whats new</small>
+                        </p>
+                    </a>
                     <hr class="navbar-divider">
                     <a class="navbar-item" href="#">Create</a>
                 </div>
             </div>
-            @endauth
         </div>
 
         <div class="navbar-end">
-            @auth
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        <figure class="image is-32x32">
-                            <img src="{{ auth()->user()->photo_path }}" class="is-profile-image">
-                        </figure>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    <figure class="image is-32x32">
+                        <img src="{{ auth()->user()->photo_path }}" class="is-profile-image">
+                    </figure>
+                </a>
+                <div class="navbar-dropdown is-right is-boxed">
+                    <div class="navbar-item">{{ auth()->user()->name }}</div>
+                    <a class="navbar-item" href="{{ route('profiles.show', auth()->user()) }}">Profile</a>
+                    <hr class="navbar-divider">
+                    <a href="{{ route('logout') }}"
+                       class="navbar-item"
+                       aria-label="more options"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Log Out
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            {{ csrf_field() }}
+                        </form>
                     </a>
-                    <div class="navbar-dropdown is-right is-boxed">
-                        <div class="navbar-item">{{ auth()->user()->name }}</div>
-                        <a class="navbar-item" href="{{ route('profile.index') }}">Profile</a>
-                        <hr class="navbar-divider">
-                        <a href="{{ route('logout') }}"
-                           class="navbar-item"
-                           aria-label="more options"
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Log Out
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                {{ csrf_field() }}
-                            </form>
-                        </a>
-                    </div>
                 </div>
-            @endauth
+            </div>
         </div>
+        @endauth
     </div>
 </nav>

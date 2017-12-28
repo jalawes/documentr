@@ -36,9 +36,6 @@ class User extends Authenticatable
         return 'username';
     }
 
-    /**
-     * @return string
-     */
     public function getNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
@@ -49,9 +46,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Channel::class);
     }
 
-    /**
-     * Get the documents for the User.
-     */
+    public function activity()
+    {
+        return $this->hasMany(Activity::class)->latest();
+    }
+
     public function documents()
     {
         return $this->hasMany(Document::class);
@@ -72,12 +71,8 @@ class User extends Authenticatable
         return $this->libraries()->attach($group);
     }
 
-    /**
-     * @param
-     * @return bool
-     */
-    public function isOwnerOf($document)
+    public function path()
     {
-        return $document->owner->id === $this->id;
+        return route('profiles.show', $this);
     }
 }

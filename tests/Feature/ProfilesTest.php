@@ -13,15 +13,17 @@ class ProfilesTest extends TestCase
 
         $this->signIn($user);
 
-        $this->get(route('profile.index'))
+        $this->get(route('profiles.show', $user))
              ->assertStatus(200)
              ->assertSee($user->name);
     }
 
     public function test_an_unauthorized_user_cannot_visit_profile()
     {
+        $user = create(User::class);
+
         $this->assertUnauthenticated();
-        $this->get(route('profile.index'))
+        $this->get(route('profiles.show', $user))
              ->assertRedirect(route('login'));
     }
 
@@ -29,7 +31,7 @@ class ProfilesTest extends TestCase
     {
         $user = create(User::class);
         $this->signIn($user);
-        $this->post(route('profile.update', [
+        $this->post(route('profiles.update', [
             'first_name' => $this->faker->firstName,
         ]))
             ->assertSessionMissing('errors');

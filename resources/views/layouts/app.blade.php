@@ -18,6 +18,9 @@
 
     <section class="section">
         <div id="app" v-cloak>
+
+            <flash message="{{ session('flash') }}"></flash>
+
             @yield('content')
         </div>
     </section>

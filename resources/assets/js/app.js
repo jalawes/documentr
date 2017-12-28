@@ -9,6 +9,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.events = new Vue()
+
+window.flash = function (message) {
+  window.events.$emit('flash', message)
+}
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -16,17 +22,9 @@ window.Vue = require('vue');
  */
 Vue.config.productionTip = false;
 
-import VueMarkdown from 'vue-markdown'
-
-Vue.component('VueMarkdown', VueMarkdown);
-Vue.component('CodeEditor', require('./components/CodeEditor'))
-
+Vue.component('Flash', require('./components/Flash'))
 Vue.component('Icon', require('./components/Icon'));
-
 Vue.component('markdown-sample', require('./components/MarkdownSample.vue'));
-Vue.component('markdown-create', require('./components/MarkdownCreate.vue'));
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
 
 const app = new Vue({
     el: '#app',

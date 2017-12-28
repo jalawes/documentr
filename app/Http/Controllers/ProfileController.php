@@ -2,38 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Profile;
+use App\Activity;
 use App\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('profiles.index', [
-            'profile_user' => auth()->user()->load('documents'),
-        ]);
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  \App\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param \App\User $profile
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Profile $profile)
+    public function show(User $profile)
     {
-        //
+        return view('profiles.index', [
+            'profile_user' => $profile,
+            'activities'   => Activity::feed($profile),
+        ]);
     }
 
     /**
@@ -55,6 +47,6 @@ class ProfileController extends Controller
             'last_name'  => request('last_name'),
         ]);
 
-        return redirect()->back();
+        return back()->with('flash', 'Your profile has been updated.');
     }
 }

@@ -22,11 +22,11 @@ $factory->define(User::class, function (Faker $faker) {
     if ($sex === 'male') {
         $title      = $faker->titleMale;
         $first_name = $faker->firstNameMale;
-        $photo_path = 'https://randomuser.me/api/portraits/men/' . random_int(1, 300) . '.jpg';
+        $photo_path = 'https://randomuser.me/api/portraits/men/' . random_int(1, 50) . '.jpg';
     } elseif ($sex === 'female') {
         $title      = $faker->titleFemale;
         $first_name = $faker->firstNameFemale;
-        $photo_path = 'https://randomuser.me/api/portraits/women/' . random_int(1, 300) . '.jpg';
+        $photo_path = 'https://randomuser.me/api/portraits/women/' . random_int(1, 50) . '.jpg';
     }
 
     return [

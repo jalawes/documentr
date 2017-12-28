@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Activity;
 use App\Document;
 use App\Library;
-use App\User;
 use Tests\TestCase;
 
 class CreateDocumentsTest extends TestCase
@@ -106,13 +106,19 @@ class CreateDocumentsTest extends TestCase
 
     public function test_authorized_users_may_delete_threads()
     {
-        $user = create(User::class);
-        $document = create(Document::class, ['user_id' => $user]);
+        $this->signIn();
 
-        $this->signIn($user);
-        $this->delete(route('documents.destroy', $document))->assertRedirect(route('documents.index'));
+        $document = create(Document::class, ['user_id' => auth()->id()]);
+
+        $this->delete(route('documents.destroy', $document))
+             ->assertRedirect(route('documents.index'));
 
         $this->assertDatabaseMissing('documents', $document->toArray());
+        $this->assertDatabaseMissing('favorites', [
+            'user_id'        => auth()->id(),
+            'favoritable_id' => $document->id,
+        ]);
+        $this->assertCount(0, Activity::all());
     }
 
     public function test_unauthorized_users_may_not_delete_threads()

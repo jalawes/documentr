@@ -26,7 +26,6 @@ class DocumentTest extends TestCase
         $document = create(Document::class, [
             'user_id' => $user
         ]);
-        static::assertTrue($user->isOwnerOf($document));
         static::assertEquals($user->id, $document->owner->id);
     }
 
