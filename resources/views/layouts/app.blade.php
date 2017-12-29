@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" class="has-navbar-fixed-top">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,7 @@
     <section class="section">
         <div id="app" v-cloak>
 
-            <flash message="{{ session('flash') }}"></flash>
+            <notification message="{{ session('flash') }}"></notification>
 
             @yield('content')
         </div>

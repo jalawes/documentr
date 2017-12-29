@@ -24,7 +24,7 @@
     @forelse($activities as $activity)
         <div class="columns is-centered">
             <div class="column is-6">
-                @include("profiles.activities.{$activity->type}")
+                @includeIf("profiles.activities.{$activity->type}")
             </div>
         </div>
     @empty

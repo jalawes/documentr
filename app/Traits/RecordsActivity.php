@@ -3,13 +3,14 @@
 
 namespace App\Traits;
 
-
 use App\Activity;
-use ReflectionClass;
 
 trait RecordsActivity
 {
 
+    /**
+     * Boot the trait.
+     */
     protected static function bootRecordsActivity()
     {
         if (auth()->guest()) return;
@@ -27,11 +28,21 @@ trait RecordsActivity
         });
     }
 
+    /**
+     * Fetch all model events that require activity recording.
+     *
+     * @return array
+     */
     protected static function getActivitiesToRecord()
     {
         return ['created'];
     }
 
+    /**
+     * Record new activity for the model.
+     *
+     * @param string $event
+     */
     protected function recordActivity($event)
     {
         $this->activity()->create([
@@ -40,13 +51,26 @@ trait RecordsActivity
         ]);
     }
 
+    /**
+     * Fetch the activity relationship.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function activity()
     {
         return $this->morphMany(Activity::class, 'subject');
     }
 
+    /**
+     * Determine the activity type.
+     *
+     * @param  string $event
+     * @return string
+     */
     protected function getActivityType($event)
     {
-        return $event . '_' . strtolower((new ReflectionClass($this))->getShortName());
+        $type = strtolower((new \ReflectionClass($this))->getShortName());
+
+        return "{$event}_{$type}";
     }
 }

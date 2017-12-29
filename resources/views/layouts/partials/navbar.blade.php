@@ -1,4 +1,4 @@
-<nav class="navbar is-transparent container">
+<nav class="navbar is-fixed-top is-transparent container">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ env('APP_URL') }}">
             <img src="{{ asset('img/documentr-512w.png') }}"
@@ -21,7 +21,13 @@
                 <div class="navbar-dropdown is-boxed">
                     <a class="navbar-item" href="{{ route('documents.index') }}">Browse</a>
                     <hr class="navbar-divider">
-                    <a class="navbar-item" href="{{ route('documents.create') }}">Create</a>
+                    <a class="navbar-item" href="{{ route('documents.create') }}">
+                        <p>
+                            <strong>Create</strong>
+                            <br>
+                            <small>Share something brilliant!</small>
+                        </p>
+                    </a>
                 </div>
             </div>
             <div class="navbar-item has-dropdown is-hoverable">

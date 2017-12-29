@@ -22,9 +22,12 @@ window.flash = function (message) {
  */
 Vue.config.productionTip = false;
 
-Vue.component('Flash', require('./components/Flash'))
+Vue.component('Notification', require('./components/Notification'));
 Vue.component('Icon', require('./components/Icon'));
 Vue.component('markdown-sample', require('./components/MarkdownSample.vue'));
+
+// Transitions
+Vue.component('Toast', require('./components/transitions/Toast'));
 
 const app = new Vue({
     el: '#app',

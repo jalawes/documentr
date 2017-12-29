@@ -6,7 +6,9 @@
            class="card-header-icon"
            aria-label="more options"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <button class="button is-small">Log Out</button>
+            <button class="button is-small is-white tooltip" data-tooltip="Log Out">
+                <icon name="sign-out"></icon>
+            </button>
         </a>
     </header>
     <form action="{{ route('profiles.update', $profile_user) }}" method="POST">
