@@ -1,18 +1,11 @@
 <template>
   <toast>
-    <div class="card is-alert-flash"
+    <div class="card is-alert-flash tooltip is-tooltip-bottom" data-tooltip="Hide"
          v-show="show"
          @click.prevent="hideNow">
       <div class="card-content">
         <div class="content">
-          <article class="media">
-            <icon name="comment-o" class="has-text-info media-left" />
-            <div class="media-content">
-              <div class="content">
-                <p>{{ body }}</p>
-              </div>
-            </div>
-          </article>
+          <p>{{ body }}</p>
         </div>
       </div>
     </div>
@@ -34,6 +27,7 @@
       };
     },
     methods: {
+
       /**
        * Display the notification after a short delay
        */

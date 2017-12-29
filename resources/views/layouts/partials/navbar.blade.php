@@ -54,8 +54,14 @@
                     </figure>
                 </a>
                 <div class="navbar-dropdown is-right is-boxed">
-                    <div class="navbar-item">{{ auth()->user()->name }}</div>
-                    <a class="navbar-item" href="{{ route('profiles.show', auth()->user()) }}">Profile</a>
+                    <a class="navbar-item" href="{{ route('profiles.show', auth()->user()) }}">
+                        <p>
+                            <strong>{{ auth()->user()->name }}</strong>
+                            <br>
+                            <small>See whats new</small>
+                        </p>
+                    </a>
+                    {{--<a class="navbar-item" href="{{ route('profiles.show', auth()->user()) }}">Profile</a>--}}
                     <hr class="navbar-divider">
                     <a href="{{ route('logout') }}"
                        class="navbar-item"

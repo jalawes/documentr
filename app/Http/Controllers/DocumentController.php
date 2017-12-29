@@ -55,7 +55,7 @@ class DocumentController extends Controller
             'user_id'    => auth()->id(),
         ]);
         // jam: ProcessMarkdown::dispatch($document);
-        return redirect($document->path())->with('flash', 'Your document has been published.');
+        return redirect($document->path())->with('flash', 'Your document has been published!');
     }
 
     /**
@@ -109,6 +109,6 @@ class DocumentController extends Controller
             return response([], 204);
         }
 
-        return redirect()->route('documents.index');
+        return redirect()->route('documents.index')->with('flash', "Deleted {$document->title}.");
     }
 }

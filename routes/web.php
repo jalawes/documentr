@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('profiles', 'ProfileController@index')->name('profiles.index');
 Route::get('profiles/{profile}', 'ProfileController@show')->name('profiles.show');
-Route::put('profiles/{profile}', 'ProfileController@update')->name('profiles.update');
+Route::patch('profiles/{profile}', 'ProfileController@update')->name('profiles.update');
 
 Route::get('documents', 'DocumentController@index')->name('documents.index');
 Route::get('documents/create', 'DocumentController@create')->name('documents.create');
