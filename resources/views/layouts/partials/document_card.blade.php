@@ -10,56 +10,23 @@
                     </div>
                     <div class="media-content">
                         <a href="{{ $document->owner->path() }}">
-                            <p class="title is-6 has-text-info">{{ $document->owner->name }}</p></a>
+                            <p class="title is-6 has-text-info">{{ $document->owner->name }}</p>
+                        </a>
                         <p class="subtitle is-7">{{ $document->created_at->diffForHumans() }}</p>
                     </div>
                     <div class="media-right">
                         <div class="buttons">
-                            {{-- todo: remove this duplication: --}}
-                            @if($document->isFavorited())
-                                <button class="button is-white is-disabled">
-                                        <span class="has-text-warning icon is-small tooltip"
-                                              data-tooltip="{{ $document->favorites_count }} stars">
-                                            <i class="fa fa-star"></i>
-                                        </span>
-                                </button>
-                            @else
-                                <form action="{{ route('documents.favorites.store', $document) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="button is-white">
-                                        <span class="has-text-warning icon is-small tooltip"
-                                              data-tooltip="{{ $document->favorites_count }} stars">
-                                            <i class="fa fa-star-o"></i>
-                                        </span>
-                                    </button>
-                                </form>
-                            @endif
+                            <favorite :document="{{ $document }}"></favorite>
                         </div>
-                        {{--<nav class="level is-mobile">--}}
-                            {{--<div class="level-left">--}}
-                                {{--<form action="{{ route('documents.favorites.store', $document) }}" method="POST">--}}
-                                    {{--{{ csrf_field() }}--}}
-                                    {{--@if($document->isFavorited())--}}
-                                        {{--<span class="has-text-warning icon is-small">--}}
-                                            {{--<i class="fa fa-star"></i>--}}
-                                        {{--</span>--}}
-                                    {{--@else--}}
-                                    {{--<button type="submit" class="button is-white">--}}
-                                        {{--<span class="has-text-warning icon is-small">--}}
-                                            {{--<i class="fa fa-star-o"></i>--}}
-                                        {{--</span>--}}
-                                    {{--</button>--}}
-                                    {{--@endif--}}
-                                {{--</form>--}}
-                            {{--</div>--}}
-                        {{--</nav>--}}
                     </div>
                 </div>
                 <div class="content">
                     <a href="{{ $document->path() }}">
                         <p class="title">{{ $document->title }}</p>
                     </a>
-                    <p>{{ $document->body }}</p>
+                    <div class="content">
+                        <vue-markdown source="{{ $document->body }}"></vue-markdown>
+                    </div>
                 </div>
             </div>
         </div>

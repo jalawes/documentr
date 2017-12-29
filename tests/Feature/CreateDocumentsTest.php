@@ -21,21 +21,21 @@ class CreateDocumentsTest extends TestCase
         $response->assertSee($document->title);
     }
 
-    public function test_an_authenticated_user_can_create_a_new_document()
+    public function test_authenticated_users_can_create_documents()
     {
         $this->signIn();
         $this->get(route('documents.create'))
              ->assertStatus(200);
     }
 
-    public function test_a_guest_cannot_create_a_new_document()
+    public function test_unauthorized_users_cannot_create_documents()
     {
         $this->assertUnauthenticated();
         $this->get(route('documents.create'))
              ->assertRedirect(route('login'));
     }
 
-    public function test_an_authenticated_user_can_submit_new_documents()
+    public function test_authenticated_users_can_submit_new_documents()
     {
         $this->signIn();
 
@@ -50,7 +50,7 @@ class CreateDocumentsTest extends TestCase
              ->assertSee($title);
     }
 
-    public function test_a_guest_cannot_store_a_new_document()
+    public function test_unauthorized_users_cannot_store_documents()
     {
         $this->assertUnauthenticated();
 
@@ -70,7 +70,7 @@ class CreateDocumentsTest extends TestCase
         static::assertEquals($library->name, $document->library->name);
     }
 
-    public function test_an_authenticated_user_can_view_a_document()
+    public function test_authenticated_users_can_view_documents()
     {
         $this->signIn();
 
@@ -133,12 +133,39 @@ class CreateDocumentsTest extends TestCase
         $this->assertDatabaseHas('documents', $document->toArray());
     }
 
-    protected function publishDocument(array $attributes = [])
+    public function test_an_authenticated_user_can_update_a_document()
     {
         $this->signIn();
 
-        $document = make(Document::class, $attributes);
+        $document = create(Document::class, [
+            'user_id' => auth()->id(),
+            'private' => false,
+        ]);
 
+        $updated_body = 'You been changed, fool.';
+        $this->patch($document->path(), [
+            'body' => $updated_body,
+        ]);
+        $this->assertDatabaseHas('documents', [
+            'id'   => $document->id,
+            'body' => $updated_body,
+        ]);
+    }
+
+    public function test_unauthorized_users_cannot_update_documents()
+    {
+        $document = create(Document::class);
+
+        $this->patch($document->path())->assertRedirect(route('login'));
+
+        $this->signIn();
+        $this->patch($document->path())->assertStatus(403);
+    }
+
+    protected function publishDocument(array $attributes = [])
+    {
+        $this->signIn();
+        $document = make(Document::class, $attributes);
         return $this->post(route('documents.store', $document->toArray()));
     }
 }

@@ -6,6 +6,7 @@ use App\Document;
 
 class HomeController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -18,7 +19,6 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()

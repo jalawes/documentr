@@ -37,7 +37,7 @@
           this.show = true;
 
           this.hide();
-        }, 500);
+        }, 250);
       },
 
       /**

@@ -89,7 +89,11 @@ class DocumentController extends Controller
      */
     public function update(Request $request, Document $document)
     {
-        //
+        $this->authorize('update', $document);
+
+        $document->update([
+            'body' => request('body'),
+        ]);
     }
 
     /**

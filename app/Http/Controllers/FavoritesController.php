@@ -15,6 +15,11 @@ class FavoritesController extends Controller
     public function store(Document $document)
     {
         $document->favorite();
-        return back()->with('flash', "{$document->title} added to favorites.");
+        // return back()->with('flash', "{$document->title} added to favorites.");
+    }
+
+    public function destroy(Document $document)
+    {
+        $document->unfavorite();
     }
 }

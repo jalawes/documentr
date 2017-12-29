@@ -22,6 +22,10 @@ class Document extends Model
         'owner',
     ];
 
+    protected $appends = [
+        'isFavorited',
+    ];
+
     protected static function boot()
     {
         parent::boot();

@@ -27,7 +27,10 @@ Route::get('documents', 'DocumentController@index')->name('documents.index');
 Route::get('documents/create', 'DocumentController@create')->name('documents.create');
 Route::post('documents', 'DocumentController@store')->name('documents.store');
 Route::get('documents/{document}', 'DocumentController@show')->name('documents.show');
+Route::get('documents/{document}/edit', 'DocumentController@edit')->name('documents.edit');
+Route::patch('documents/{document}', 'DocumentController@update')->name('documents.update');
 Route::delete('documents/{document}', 'DocumentController@destroy')->name('documents.destroy');
 Route::post('documents/{document}/favorites', 'FavoritesController@store')->name('documents.favorites.store');
+Route::delete('documents/{document}/favorites', 'FavoritesController@destroy')->name('document.favorites.destroy');
 
 Route::get('libraries', 'LibraryController@index')->name('libraries.index');

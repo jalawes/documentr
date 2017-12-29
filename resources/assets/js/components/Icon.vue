@@ -22,10 +22,14 @@
     },
     computed: {
       iconColor () {
-        return 'icon ' + this.color
+        let classes = 'icon';
+        if (this.color) {
+          classes += ' ' + this.color
+        }
+        return classes
       },
       iconClass () {
-        return 'fa fa-fw fa-' + this.name
+        return 'fa fa-' + this.name
       }
     }
   }

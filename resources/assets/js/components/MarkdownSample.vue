@@ -2,7 +2,7 @@
   <div>
     <div class="content">
       <p class="subtitle">
-        <vue-markdown :source="input"></vue-markdown>
+        <vue-markdown :source="input" />
       </p>
     </div>
     <button class="button"
@@ -16,7 +16,7 @@
               v-if="trying"
               @focus="startTrying"
               @blur="stopTrying"
-    ></textarea>
+              title="input"></textarea>
   </div>
 </template>
 
@@ -36,13 +36,13 @@
       },
       reset () {
         if (!this.input) {
-          this.input = 'Realtime Markdown Editor for Developers'
+          this.input = 'Real time Markdown Editor for Developers'
         }
       }
     },
     data () {
       return {
-        input: 'Realtime Markdown Editor for Developers',
+        input: 'Real time Markdown Editor for Developers',
         trying: false
       }
     },

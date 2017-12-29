@@ -27,13 +27,19 @@ trait Favoritable
         }
     }
 
-    /**
-     * @param
-     * @return bool
-     */
+    public function unfavorite()
+    {
+        return $this->favorites()->where('user_id', auth()->id())->delete();
+    }
+
     public function isFavorited()
     {
         return (bool)$this->favorites->where('user_id', auth()->id())->count();
+    }
+
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
     }
 
     public function getFavoritesCountAttribute()

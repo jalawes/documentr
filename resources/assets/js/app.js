@@ -25,6 +25,8 @@ import VueMarkdown from 'vue-markdown';
 
 Vue.component('vue-markdown', VueMarkdown);
 
+Vue.component('Document', require('./components/Document'));
+Vue.component('Favorite', require('./components/Favorite'));
 Vue.component('Notification', require('./components/Notification'));
 Vue.component('Icon', require('./components/Icon'));
 Vue.component('markdown-sample', require('./components/MarkdownSample.vue'));
