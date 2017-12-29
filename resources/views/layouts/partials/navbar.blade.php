@@ -1,4 +1,4 @@
-<nav class="navbar is-fixed-top is-transparent container">
+<nav class="navbar is-fixed-top is-info container">
     <div class="navbar-brand">
         <a class="navbar-item" href="{{ env('APP_URL') }}">
             <img src="{{ asset('img/documentr-512w.png') }}"
