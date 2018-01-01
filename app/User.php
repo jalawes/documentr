@@ -20,6 +20,7 @@ class User extends Authenticatable
         'photo_path',
         'email',
         'password',
+        'authentication_provider_id',
     ];
 
     /**
@@ -59,6 +60,11 @@ class User extends Authenticatable
     public function libraries()
     {
         return $this->belongsToMany(Library::class);
+    }
+
+    public function authentication_provider()
+    {
+        return $this->hasOne(AuthenticationProvider::class);
     }
 
     public function join($channel)

@@ -16,3 +16,13 @@ function isJson($string)
         ? true
         : false;
 }
+
+function before_first($string, $character = ' ')
+{
+    return str_before($string, $character);
+}
+
+function after_first($string, $character = ' ')
+{
+    return str_after($string, $character);
+}
