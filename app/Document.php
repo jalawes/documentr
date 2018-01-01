@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-
     use Favoritable, RecordsActivity;
 
     protected $fillable = [
@@ -20,6 +19,7 @@ class Document extends Model
 
     protected $with = [
         'owner',
+        'favorites',
     ];
 
     protected $appends = [
@@ -31,7 +31,7 @@ class Document extends Model
         parent::boot();
 
         static::addGlobalScope('favorites', function (Builder $builder) {
-            $builder->with('favorites');
+            // $builder->with('favorites');
             $builder->withCount('favorites');
         });
 
@@ -64,5 +64,22 @@ class Document extends Model
     public function path()
     {
         return route('documents.show', $this);
+    }
+
+    public function subscribe($user_id = null)
+    {
+        $this->subscriptions()->create([
+            'user_id' => $user_id ?? auth()->id(),
+        ]);
+    }
+
+    public function unsubscribe($user_id = null)
+    {
+        $this->subscriptions()->where('user_id', $user_id ?? auth()->id())->delete();
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(DocumentSubscription::class);
     }
 }

@@ -9,6 +9,13 @@ use App\Favorite;
 trait Favoritable
 {
 
+    protected static function bootFavoritable()
+    {
+        static::deleting(function ($model) {
+            $model->favorites->each->delete();
+        });
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
@@ -29,7 +36,7 @@ trait Favoritable
 
     public function unfavorite()
     {
-        return $this->favorites()->where('user_id', auth()->id())->delete();
+        return $this->favorites()->where('user_id', auth()->id())->get()->each->delete();
     }
 
     public function isFavorited()

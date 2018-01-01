@@ -21,7 +21,8 @@ class DocumentController extends Controller
     public function index()
     {
         $documents = Document::with('owner')->public()->latest()->get();
-        return view('documents.index', compact('documents'));
+
+        return view('documents.index')->with(['documents' => $documents]);
     }
 
     /**
@@ -44,7 +45,7 @@ class DocumentController extends Controller
     {
         $this->validate($request, [
             'body'       => 'required',
-            'library_id' => 'integer|exists:libraries,id',
+            'library_id' => 'nullable|exists:libraries,id',
             'title'      => 'required',
         ]);
 
@@ -54,7 +55,11 @@ class DocumentController extends Controller
             'title'      => request('title'),
             'user_id'    => auth()->id(),
         ]);
-        // jam: ProcessMarkdown::dispatch($document);
+
+        if (request()->wantsJson()) {
+            return response([], 202);
+        }
+
         return redirect($document->path())->with('flash', 'Your document has been published!');
     }
 
@@ -66,18 +71,7 @@ class DocumentController extends Controller
      */
     public function show(Document $document)
     {
-        return view('documents.show', compact('document'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Document  $document
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Document $document)
-    {
-        //
+        return view('documents.show')->with(['document' => $document]);
     }
 
     /**

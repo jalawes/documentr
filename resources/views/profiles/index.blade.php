@@ -8,30 +8,35 @@
         <div class="column is-6">
             @include('profiles.top_level')
             @include('profiles.second_level')
-
             @can('update', $profile_user)
                 @include('profiles.profile_panel')
             @endcan
         </div>
     </div>
 
-    <div class="columns is-centered">
-        <div class="column is-6">
-            <div class="is-divider" data-content="ACTIVITY"></div>
-        </div>
-    </div>
+    @forelse($activities as $date => $collection)
 
-    @forelse($activities as $activity)
         <div class="columns is-centered">
             <div class="column is-6">
-                @includeIf("profiles.activities.{$activity->type}")
+                <date date-time="{{ $date }}" inline-template>
+                    <div class="is-divider" :data-content="dayAgo"></div>
+                </date>
             </div>
         </div>
+
+        @foreach($collection as $activity)
+            <div class="columns is-centered">
+                <div class="column is-6">
+                    @includeIf("profiles.activities.{$activity->type}")
+                </div>
+            </div>
+        @endforeach
     @empty
         <div class="columns is-centered">
             <div class="column is-6 has-text-centered">
-                <p>This user has no activity!</p>
+                This user has no activity!
             </div>
         </div>
     @endforelse
+
 @endsection

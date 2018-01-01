@@ -23,15 +23,27 @@ Vue.config.productionTip = false;
 
 import VueMarkdown from 'vue-markdown';
 
+// Packages
 Vue.component('vue-markdown', VueMarkdown);
 
-Vue.component('Document', require('./components/Document'));
+// Components
+Vue.component('DocumentCreate', require('./components/DocumentCreate'));
 Vue.component('Favorite', require('./components/Favorite'));
+Vue.component('markdown-sample', require('./components/MarkdownSample'));
 Vue.component('Notification', require('./components/Notification'));
+Vue.component('CodeMirror', require('./components/Documents/Codemirror'));
+Vue.component('Preview', require('./components/Documents/Preview'));
+
+// Inline Components
+Vue.component('Document', require('./components/Document'));
+Vue.component('ActivityDivider', require('./components/ActivityDivider'));
+
+// Utilities
 Vue.component('Icon', require('./components/Icon'));
-Vue.component('markdown-sample', require('./components/MarkdownSample.vue'));
+Vue.component('Date', require('./components/Date'));
 
 // Transitions
 Vue.component('Toast', require('./components/transitions/Toast'));
+Vue.component('FadeIn', require('./components/transitions/FadeIn'));
 
 const app = new Vue({el: '#app'});

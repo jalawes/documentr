@@ -1,7 +1,6 @@
 <div class="card">
     <header class="card-header">
         <p class="card-header-title">Profile</p>
-        {{-- @if (Auth::user()->) --}}
         <a href="{{ route('logout') }}"
            class="card-header-icon"
            aria-label="more options"

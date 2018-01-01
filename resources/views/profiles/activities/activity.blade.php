@@ -1,8 +1,8 @@
-<div class="card">
-    <div class="card-content">
+<div class="box">
+    {{ $heading }}
+    @if(isset($body))
         <div class="content">
-            {{ $heading }}
-            {{--todo: insert body--}}
+            {{ $body ?? null }}
         </div>
-    </div>
+    @endif
 </div>

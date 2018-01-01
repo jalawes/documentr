@@ -15,14 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Authentication
 Auth::routes();
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 
+// Home
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Profiles
 Route::get('profiles', 'ProfileController@index')->name('profiles.index');
 Route::get('profiles/{profile}', 'ProfileController@show')->name('profiles.show');
 Route::patch('profiles/{profile}', 'ProfileController@update')->name('profiles.update');
 
+// Documents
 Route::get('documents', 'DocumentController@index')->name('documents.index');
 Route::get('documents/create', 'DocumentController@create')->name('documents.create');
 Route::post('documents', 'DocumentController@store')->name('documents.store');
@@ -30,7 +36,10 @@ Route::get('documents/{document}', 'DocumentController@show')->name('documents.s
 Route::get('documents/{document}/edit', 'DocumentController@edit')->name('documents.edit');
 Route::patch('documents/{document}', 'DocumentController@update')->name('documents.update');
 Route::delete('documents/{document}', 'DocumentController@destroy')->name('documents.destroy');
+
+// Favorites
 Route::post('documents/{document}/favorites', 'FavoritesController@store')->name('documents.favorites.store');
 Route::delete('documents/{document}/favorites', 'FavoritesController@destroy')->name('document.favorites.destroy');
 
+// Libraries
 Route::get('libraries', 'LibraryController@index')->name('libraries.index');

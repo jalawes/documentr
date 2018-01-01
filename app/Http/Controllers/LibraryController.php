@@ -42,10 +42,10 @@ class LibraryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Library $group
+     * @param  \App\Library $library
      * @return \Illuminate\Http\Response
      */
-    public function show(Library $group)
+    public function show(Library $library)
     {
         //
     }
@@ -53,10 +53,10 @@ class LibraryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Library $group
+     * @param  \App\Library $library
      * @return \Illuminate\Http\Response
      */
-    public function edit(Library $group)
+    public function edit(Library $library)
     {
         //
     }
@@ -65,10 +65,10 @@ class LibraryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Library             $group
+     * @param  \App\Library             $library
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Library $group)
+    public function update(Request $request, Library $library)
     {
         //
     }
@@ -76,10 +76,10 @@ class LibraryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Library $group
+     * @param  \App\Library $library
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Library $group)
+    public function destroy(Library $library)
     {
         //
     }

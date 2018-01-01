@@ -7,7 +7,8 @@
     </div>
     <button class="button"
             v-if="!trying"
-            @click="startTrying">Try</button>
+            @click="startTrying">Try
+    </button>
     <textarea name="input"
               id="input-code"
               class="code textarea"
@@ -24,34 +25,34 @@
   export default {
     name: 'MarkdownSample',
     methods: {
-      update: _.debounce(function (event) {
-        this.input = event.target.value
+      update: _.debounce(function(event) {
+        this.input = event.target.value;
       }, 300),
-      startTrying () {
-        this.trying = true
+      startTrying() {
+        this.trying = true;
       },
-      stopTrying () {
-        this.trying = false
-        this.reset()
+      stopTrying() {
+        this.trying = false;
+        this.reset();
       },
-      reset () {
+      reset() {
         if (!this.input) {
-          this.input = 'Real time Markdown Editor for Developers'
+          this.input = 'Real time Markdown Editor for Developers';
         }
-      }
+      },
     },
-    data () {
+    data() {
       return {
         input: 'Real time Markdown Editor for Developers',
-        trying: false
-      }
+        trying: false,
+      };
     },
-  }
+  };
 </script>
 
 <style scoped lang="scss">
   .code {
-    font-size: 10px !important;
+    font-size:   10px !important;
     font-family: 'Source Code Pro', monospace !important;
   }
 </style>

@@ -37,13 +37,13 @@
         flash('Added to your favorites!');
       },
 
-      toggle() {
+      toggle: _.debounce(function() {
         if (this.isFavorited) {
           this.unFavorite();
         } else {
           this.favorite();
         }
-      },
+      }, 300, {leading:true, trailing:false}),
 
       unFavorite() {
         axios.delete('/documents/' + this.document.id + '/favorites');

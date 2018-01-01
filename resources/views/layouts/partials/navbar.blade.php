@@ -23,7 +23,19 @@
                     <div class="navbar-item has-dropdown is-hoverable">
                         <div class="navbar-link">Docs</div>
                         <div class="navbar-dropdown is-boxed">
-                            <a class="navbar-item" href="{{ route('documents.index') }}">Browse</a>
+                            {{--@foreach($latest_documents as $document)--}}
+                            {{--<a class="navbar-item" href="{{ $document->path() }}">--}}
+                                {{--<div class="navbar-content">--}}
+                                    {{--<p>--}}
+                                        {{--<small class="has-text-link">{{ $document->created_at->diffForHumans() }}</small>--}}
+                                    {{--</p>--}}
+                                    {{--<p>{{ $document->title }}</p>--}}
+                                {{--</div>--}}
+                            {{--</a>--}}
+                            {{--@endforeach--}}
+                            <a class="navbar-item" href="{{ route('documents.index') }}">
+                                More docs
+                            </a>
                             <hr class="navbar-divider">
                             <a class="navbar-item" href="{{ route('documents.create') }}">
                                 <p><strong>Create</strong><br>

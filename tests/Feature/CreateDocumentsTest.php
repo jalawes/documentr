@@ -168,4 +168,26 @@ class CreateDocumentsTest extends TestCase
         $document = make(Document::class, $attributes);
         return $this->post(route('documents.store', $document->toArray()));
     }
+
+    public function test_a_document_can_be_subscribed_to()
+    {
+        $document = create(Document::class);
+
+        $document->subscribe($user_id = 1);
+
+        $subscriptions = $document->subscriptions()->where('user_id', $user_id)->get();
+
+        $this->assertCount(1, $subscriptions);
+    }
+
+    public function test_a_thread_can_be_unsubscribed_from()
+    {
+        $document = create(Document::class);
+
+        $document->subscribe($user_id = 1);
+
+        $document->unsubscribe($user_id);
+
+        $this->assertCount(0, $document->subscriptions);
+    }
 }
