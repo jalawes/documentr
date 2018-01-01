@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Document;
+use App\Http\Requests\StoreDocument;
 use Illuminate\Http\Request;
+use function array_merge;
 
 class DocumentController extends Controller
 {
@@ -38,23 +40,16 @@ class DocumentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\StoreDocument $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDocument $request)
     {
-        $this->validate($request, [
-            'body'       => 'required',
-            'library_id' => 'nullable|exists:libraries,id',
-            'title'      => 'required',
-        ]);
-
-        $document = Document::create([
-            'body'       => request('body'),
-            'library_id' => request('library_id') ?? null,
-            'title'      => request('title'),
-            'user_id'    => auth()->id(),
-        ]);
+        $document = Document::create(
+            array_merge(
+                $request->all(),
+                ['user_id' => auth()->id()
+        ]));
 
         if (request()->wantsJson()) {
             return response([], 202);

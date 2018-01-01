@@ -58,7 +58,7 @@
                                     <img src="{{ auth()->user()->avatar }}" class="is-profile-image">
                                 @else
                                     <div class="avatar is-32x32">
-                                        <p>{{ get_initials(auth()->user()->name) }}</p>
+                                        <p class="is-size-6">{{ first_last_initials(auth()->user()->name) }}</p>
                                     </div>
                                 @endif
                             </figure>

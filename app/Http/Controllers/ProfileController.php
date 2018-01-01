@@ -36,6 +36,8 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $profile)
     {
+        $this->authorize('update', $profile);
+
         $this->validate($request, [
             'first_name' => 'string',
             'last_name'  => 'string',

@@ -4,8 +4,14 @@
             <div class="card-content">
                 <div class="media">
                     <div class="media-left">
-                        <figure class="image is-32x32">
-                            <img src="{{ $document->owner->avatar }}" class="is-profile-image">
+                        <figure class="image is-32x32 person">
+                            @if ($document->owner->avatar)
+                                <img src="{{ $document->owner->avatar }}" class="is-profile-image">
+                            @else
+                                <div class="avatar is-32x32">
+                                    <p class="is-size-6">{{ first_last_initials($document->owner->name) }}</p>
+                                </div>
+                            @endif
                         </figure>
                     </div>
                     <div class="media-content">

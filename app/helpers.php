@@ -27,11 +27,20 @@ function after_first($string, $character = ' ')
     return str_after($string, $character);
 }
 
-function get_initials($string)
+function first_last_initials($string)
 {
-    $initials = get_capital_initials($string);
+    $all_initials       = get_capital_initials($string);
+    $initials           = '';
+    $number_of_initials = 2;
 
-    return (string) $initials[0] . $initials[1];
+    if (sizeof($all_initials) < $number_of_initials) {
+        $number_of_initials = sizeof($all_initials);
+    }
+    foreach (range(0, $number_of_initials - 1) as $index) {
+        $initials .= $all_initials[$index];
+    }
+
+    return (string)$initials;
 }
 
 function separate_by_space(string $string)
@@ -39,14 +48,6 @@ function separate_by_space(string $string)
     return preg_split('/\s+/', $string);
 }
 
-/**
- * PREG_PATTERN_ORDER
- * Orders results so that $matches[0] is an array of full pattern matches,
- * $matches[1] is an array of strings matched by the first parenthesized subpattern, and so on.
- *
- * @param $string
- * @return array
- */
 function get_capital_initials($string)
 {
     preg_match_all("/(\S)\S*/i", ucwords($string), $array, PREG_PATTERN_ORDER);
