@@ -26,3 +26,31 @@ function after_first($string, $character = ' ')
 {
     return str_after($string, $character);
 }
+
+function get_initials($string)
+{
+    $initials = get_capital_initials($string);
+
+    return (string) $initials[0] . $initials[1];
+}
+
+function separate_by_space(string $string)
+{
+    return preg_split('/\s+/', $string);
+}
+
+/**
+ * PREG_PATTERN_ORDER
+ * Orders results so that $matches[0] is an array of full pattern matches,
+ * $matches[1] is an array of strings matched by the first parenthesized subpattern, and so on.
+ *
+ * @param $string
+ * @return array
+ */
+function get_capital_initials($string)
+{
+    preg_match_all("/(\S)\S*/i", ucwords($string), $array, PREG_PATTERN_ORDER);
+
+    return $array[1];
+}
+

@@ -10,7 +10,7 @@
     <!-- Right side -->
     <div class="level-right">
         <figure class="image is-96x96">
-            <img src="{{ $profile_user->photo_path }}" class="is-profile-image">
+            <img src="{{ $profile_user->avatar }}" class="is-profile-image">
         </figure>
     </div>
 </nav>

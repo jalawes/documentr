@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Illuminate\Http\Request;
 use App\AuthenticationProvider;
 use App\Http\Controllers\Controller;
-use Laravel\Socialite\Facades\Socialite;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
+
     /*
     |--------------------------------------------------------------------------
     | Login Controller
@@ -70,7 +71,6 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        // find or create the user in the db
         $user = $this->findOrCreateGithubUser(
             Socialite::driver('github')->user()
         );
@@ -82,31 +82,23 @@ class LoginController extends Controller
 
     public function findOrCreateGithubUser($github_user)
     {
-        // will attempt to locate a record in the database matching the given attributes
-        // if a model is not found, a new model instance will be returned
-        // the model returned by firstOrNew has not yet been persisted to the database
         $provider = AuthenticationProvider::firstOrNew([
             'provider_id' => $github_user->id,
+            'type'        => 'github',
         ]);
 
         if ($provider->exists()) {
             return $provider->user;
         }
 
-        // create the user
         $user = User::create([
-            'email' => $github_user->email,
-            'photo_path' => $github_user->avatar,
+            'email'      => $github_user->email,
+            'avatar'     => $github_user->avatar,
             'first_name' => before_first($github_user->name),
-            'last_name' => after_first($github_user->name),
-            'authentication_provider_id' => $provider->id,
         ]);
 
-        // update the provider details
-        $provider->fill([
-            'user_id' => $user->id,
-            'provider' => 'github',
-        ])->save();
+        $provider->user_id = $user->id;
+        $provider->save();
 
         return $user;
     }

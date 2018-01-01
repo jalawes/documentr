@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\AuthenticationProvider;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateAuthenticationProvidersTable extends Migration
 {
@@ -15,9 +16,10 @@ class CreateAuthenticationProvidersTable extends Migration
     {
         Schema::create('authentication_providers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('provider');
-            $table->string('provider_id')->unique();
-            $table->integer('user_id');
+            $table->enum('type', AuthenticationProvider::TYPES);
+            $table->unsignedInteger('provider_id')->unique();
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

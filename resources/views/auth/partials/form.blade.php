@@ -1,5 +1,4 @@
 <div class="box">
-
     <form action="{{ route('login') }}" method="POST">
         {{ csrf_field() }}
         <div class="field">
@@ -31,6 +30,12 @@
         </div>
         <div class="field">
             <button class="button is-info is-fullwidth" type="submit">Log In</button>
+        </div>
+        <div class="field">
+            <a href="{{ route('login.github') }}" class="button is-success is-fullwidth">
+                <icon name="github"></icon>
+                <span>Login with Github</span>
+            </a>
         </div>
     </form>
 </div>

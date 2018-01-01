@@ -1,7 +1,16 @@
+// Important!
+// Import your custom CSS after importing Bulma's initial variables
+// Import Frameworks last
+
+//@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/all";
 
 // Global
 @import "global";
 @import "~codemirror/addon/display/fullscreen.css";
+
+// Variables
+@import "variables";
 
 // Images
 @import "images";
@@ -12,14 +21,11 @@
 // Components
 @import "components";
 
-// Variables
-@import "variables";
-
 // Fonts
 @import "~font-awesome/scss/font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
-// Bootstrap
+// Frameworks
 @import "~bulma/bulma";
 @import "~bulma-extensions/bulma-badge/bulma-badge.css";
 @import "~bulma-extensions/bulma-tooltip/bulma-tooltip.css";

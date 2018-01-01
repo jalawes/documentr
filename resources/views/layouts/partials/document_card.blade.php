@@ -5,7 +5,7 @@
                 <div class="media">
                     <div class="media-left">
                         <figure class="image is-32x32">
-                            <img src="{{ $document->owner->photo_path }}" class="is-profile-image">
+                            <img src="{{ $document->owner->avatar }}" class="is-profile-image">
                         </figure>
                     </div>
                     <div class="media-content">

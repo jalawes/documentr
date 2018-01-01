@@ -23,18 +23,8 @@
                     <div class="navbar-item has-dropdown is-hoverable">
                         <div class="navbar-link">Docs</div>
                         <div class="navbar-dropdown is-boxed">
-                            {{--@foreach($latest_documents as $document)--}}
-                            {{--<a class="navbar-item" href="{{ $document->path() }}">--}}
-                                {{--<div class="navbar-content">--}}
-                                    {{--<p>--}}
-                                        {{--<small class="has-text-link">{{ $document->created_at->diffForHumans() }}</small>--}}
-                                    {{--</p>--}}
-                                    {{--<p>{{ $document->title }}</p>--}}
-                                {{--</div>--}}
-                            {{--</a>--}}
-                            {{--@endforeach--}}
                             <a class="navbar-item" href="{{ route('documents.index') }}">
-                                More docs
+                                <p>Browse</p>
                             </a>
                             <hr class="navbar-divider">
                             <a class="navbar-item" href="{{ route('documents.create') }}">
@@ -63,8 +53,14 @@
                 <div class="navbar-end">
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
-                            <figure class="image is-32x32">
-                                <img src="{{ auth()->user()->photo_path }}" class="is-profile-image">
+                            <figure class="image is-32x32 person">
+                                @if (auth()->user()->avatar)
+                                    <img src="{{ auth()->user()->avatar }}" class="is-profile-image">
+                                @else
+                                    <div class="avatar is-32x32">
+                                        <p>{{ get_initials(auth()->user()->name) }}</p>
+                                    </div>
+                                @endif
                             </figure>
                         </a>
                         <div class="navbar-dropdown is-right is-boxed">
@@ -86,7 +82,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         @endauth
     </div>

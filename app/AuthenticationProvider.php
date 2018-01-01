@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class AuthenticationProvider extends Model
 {
+    const TYPES = [
+        'github',
+    ];
+
     protected $fillable = [
-        'provider',
+        'type',
         'provider_id',
         'user_id'
     ];

@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         create(User::class, [
+            'avatar'     => '',
             'first_name' => 'Jamal',
             'last_name'  => 'Alawes',
             'email'      => 'jamal@jamal.com',

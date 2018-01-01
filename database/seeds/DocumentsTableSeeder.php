@@ -1,6 +1,7 @@
 <?php
 
 use App\Document;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DocumentsTableSeeder extends Seeder
@@ -12,6 +13,15 @@ class DocumentsTableSeeder extends Seeder
      */
     public function run()
     {
-        createMany(Document::class, 30);
+        $users = User::all()->nth(random_int(2, 3));
+
+        foreach ($users as $user) {
+            auth()->login($user);
+            create(Document::class);
+        }
+        foreach (makeMany(Document::class, 30) as $document) {
+            auth()->login($document->owner);
+            $document->save();
+        };
     }
 }

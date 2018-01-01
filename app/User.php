@@ -2,12 +2,13 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
+use App\Traits\RecordsActivity;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, RecordsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
-        'photo_path',
+        'avatar',
         'email',
         'password',
         'authentication_provider_id',
@@ -62,7 +63,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Library::class);
     }
 
-    public function authentication_provider()
+    public function authenticationProvider()
     {
         return $this->hasOne(AuthenticationProvider::class);
     }
