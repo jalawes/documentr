@@ -4,11 +4,21 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import io from 'socket.io-client';
+import VueMarkdown from 'vue-markdown';
+
 require('./bootstrap');
 
 window.Vue = require('vue');
 
 window.events = new Vue();
+
+const socket = io('http://192.168.10.10:3000');
+window.socket = socket;
+window.socket.on('test-channel:user-signed-up', (message) => {
+  // window.events.$emit('flash', message.username);
+  // console.log('omg it worked');
+});
 
 window.flash = function(message) {
   window.events.$emit('flash', message);
@@ -20,8 +30,6 @@ window.flash = function(message) {
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 Vue.config.productionTip = false;
-
-import VueMarkdown from 'vue-markdown';
 
 // Packages
 Vue.component('vue-markdown', VueMarkdown);

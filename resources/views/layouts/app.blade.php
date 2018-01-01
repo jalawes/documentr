@@ -12,6 +12,12 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    <script>
+      window.App =; {!! json_encode([
+            'user' => Auth::user(),
+        ]) !!}
+    </script>
 </head>
 <body>
     @include('layouts.partials.navbar')

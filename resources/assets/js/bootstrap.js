@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -8,11 +7,11 @@ window._ = require('lodash');
  */
 
 try {
-    window.$ = window.jQuery = require('jquery');
+  window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+  require('bootstrap-sass');
 } catch (e) {
-  console.log(e)
+  console.log(e);
 }
 
 /**
@@ -34,9 +33,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error(
+      'CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -45,13 +45,11 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo'
-
 window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: 'f3355a256293f9358fcb',
-    cluster: 'us2',
-    encrypted: true
-});
+// window.Echo = new Echo({
+//   broadcaster: 'pusher',
+//   key: 'f3355a256293f9358fcb',
+//   cluster: 'us2',
+//   encrypted: true,
+// });

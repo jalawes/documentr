@@ -12,7 +12,32 @@
 */
 
 Route::get('/', function () {
+
+    // $data = [
+    //     'event' => 'user-signed-up',
+    //     'data'  => [
+    //         'username' => Auth::user()->name ?? 'Anonymous',
+    //         'body'     => 'Connected',
+    //     ],
+    // ];
+    //
+    // Redis::publish('test-channel', json_encode($data));
+
     return view('welcome');
+});
+
+Route::post('/', function () {
+    $data = [
+        'event' => 'user-signed-up',
+        'data'  => [
+            'username' => Auth::user()->name ?? 'Anonymous',
+            'body'     => request('body'),
+        ],
+    ];
+   Redis::publish('test-channel', json_encode($data));
+    if (request()->wantsJson()) {
+        return response([], 202);
+    }
 });
 
 // Authentication
