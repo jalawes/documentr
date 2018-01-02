@@ -13,7 +13,7 @@ window.Vue = require('vue');
 
 window.events = new Vue();
 
-window.socket = io('localhost:3000');
+window.socket = io('http://documentr.io:3000');
 
 window.flash = function(message) {
   window.events.$emit('flash', message);
