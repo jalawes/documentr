@@ -2,14 +2,6 @@
   <div class="columns is-centered">
     <div class="column is-6">
 
-      <div class="field is-right">
-        <figure class="image is-32x32 person">
-          <div class="avatar is-32x32 tooltip" :data-tooltip="user">
-            <p class="is-size-6">{{ user.first_name + ' ' + user.last_name | getInitials }}</p>
-          </div>
-        </figure>
-      </div>
-
       <div class="box sample" v-show="!trying" @click="startTrying">
         <preview :code="input"/>
         <div class="field has-text-right">
