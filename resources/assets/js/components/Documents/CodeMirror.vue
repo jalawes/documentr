@@ -32,7 +32,7 @@
     },
     methods: {
       onCmBlur() {
-        this.$emit('blur')
+        this.$emit('blur');
       },
       onCmReady(cm) {
         console.log('the editor is readied!', cm);
