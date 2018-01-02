@@ -40,12 +40,10 @@
       onCmFocus(cm) {
         console.log('the editor is focus!', cm);
       },
-      onCmCodeChange: _.debounce(function(newCode) {
-        // console.log('this is new code', newCode);
-        // console.log('this is current codemirror object', this.codemirror);
+      onCmCodeChange(newCode) {
         this.body = newCode;
         this.$emit('input', this.body);
-      }, 500),
+      },
     },
     data() {
       return {
