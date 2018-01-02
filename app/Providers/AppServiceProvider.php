@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Document;
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // View::share('latest_documents', Document::latest()->public()->take(3)->get());
+        //
     }
 
     /**

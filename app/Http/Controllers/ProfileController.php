@@ -33,6 +33,7 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @param \App\User                 $profile
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, User $profile)
     {

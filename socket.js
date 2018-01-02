@@ -11,7 +11,7 @@ redis.on('message', function(channel, message) {
   message = JSON.parse(message);
   console.log('Message received:');
   console.log('channel:', channel);
-  console.log('messsage:', message);
+  console.log('message:', message);
   console.log('full channel name:', channel + ':' + message.event);
   io.emit(channel + ':' + message.event, message.data);
 });

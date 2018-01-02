@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
+@section('title', 'Browsing Documents')
+
 @section('content')
-    <div class="columns is-centered">
-        <div class="column is-6">
-            @each('layouts.partials.document_card', $documents, 'document')
+    @foreach ($documents as $document)
+        <div class="columns is-centered">
+            <div class="column is-6">
+                @include('layouts.partials.document_card', $document)
+            </div>
         </div>
-    </div>
+    @endforeach
 @endsection

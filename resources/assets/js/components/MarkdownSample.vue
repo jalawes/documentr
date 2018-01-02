@@ -1,23 +1,28 @@
 <template>
-  <div>
-    <div class="content">
-      <preview :code="input" v-if="!trying" />
-    </div>
-    <button class="button"
-            v-if="!trying"
-            @click="startTrying">Try</button>
-    <div class="content">
-      <div class="field">
-        <textarea name="input"
-                  id="input-code"
-                  class="code textarea"
-                  @input="update"
-                  :value="input"
-                  v-show="trying"
-                  @focus="startTrying"
-                  @blur="stopTrying"
-                  title="input"></textarea>
-        <p class="help" v-show="updatedBy">Last Updated by {{ updatedBy }}</p>
+  <div class="columns is-centered">
+    <div class="column is-6">
+
+      <div class="field is-right">
+        <figure class="image is-32x32 person">
+          <div class="avatar is-32x32 tooltip" :data-tooltip="user">
+            <p class="is-size-6">{{ user.first_name + ' ' + user.last_name | getInitials }}</p>
+          </div>
+        </figure>
+      </div>
+
+      <div class="box sample" v-show="!trying" @click="startTrying">
+        <preview :code="input"/>
+        <div class="field has-text-right">
+          <p class="help" v-if="updatedBy">Last Updated by {{ updatedBy }}</p>
+        </div>
+      </div>
+
+      <div class="sample box" v-show="trying">
+        <code-mirror name="input"
+                     @input="update"
+                     :value="input"
+                     @focus="startTrying"
+                     @blur="stopTrying" />
       </div>
     </div>
   </div>
@@ -27,32 +32,55 @@
   export default {
     name: 'MarkdownSample',
     methods: {
-      update: _.debounce(function(event) {
-        this.input = event.target.value;
-        let msg = {
-          username: this.user.first_name,
+
+      addUser() {
+        this.users.push(this.user)
+      },
+      update(message) {
+        console.log(message);
+        this.input = message
+        // _.debounce(function(message) {
+        //   this.sendRequest();
+        // }, 1000)
+      },
+      // update: _.debounce(function(message) {
+      //   this.input = message;
+      //   this.sendRequest();
+      // }, 1000),
+
+      sendRequest() {
+        axios.post('/', {
+          username: this.name,
           body: this.input
-        };
-        console.log('sending message:', msg);
-        axios.post('/', msg)
-      }, 1000),
+        });
+      },
+
       startTrying() {
         this.trying = true;
       },
+
       stopTrying() {
         this.trying = false;
         this.reset();
       },
+
       reset() {
         if (!this.input) {
           this.input = 'Real time Markdown Editor for Developers';
         }
       },
     },
+    filters: {
+      getInitials(name) {
+        let  initials = name.match(/\b\w/g) || [];
+        initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+        return initials
+      }
+    },
     computed: {
       user() {
         return window.App.user ? window.App.user : 'Anonymous';
-      }
+      },
     },
     data() {
       return {
@@ -62,12 +90,14 @@
           body: '',
         },
         updatedBy: '',
+        users: []
       };
     },
     created() {
+      this.addUser();
       window.socket.on('test-channel:user-signed-up', (message) => {
         this.input = message.body;
-        this.updatedBy = message.username
+        this.updatedBy = message.username;
       });
     },
   };
@@ -75,7 +105,10 @@
 
 <style scoped lang="scss">
   .code {
-    font-size:   10px !important;
+    font-size:   14px !important;
     font-family: 'Source Code Pro', monospace !important;
+  }
+  .sample {
+    text-align: left;
   }
 </style>

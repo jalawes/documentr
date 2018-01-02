@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <vue-markdown :source="code"></vue-markdown>
+    <vue-markdown :source="code" :toc="true"/>
   </div>
 </template>
 

@@ -4,8 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import io from 'socket.io-client';
 import VueMarkdown from 'vue-markdown';
+import io from 'socket.io-client';
 
 require('./bootstrap');
 
@@ -13,12 +13,7 @@ window.Vue = require('vue');
 
 window.events = new Vue();
 
-const socket = io('http://192.168.10.10:3000');
-window.socket = socket;
-window.socket.on('test-channel:user-signed-up', (message) => {
-  // window.events.$emit('flash', message.username);
-  // console.log('omg it worked');
-});
+window.socket = io('http://192.168.10.10:3000');
 
 window.flash = function(message) {
   window.events.$emit('flash', message);

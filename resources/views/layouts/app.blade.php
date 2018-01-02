@@ -14,9 +14,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     <script>
-      window.App =; {!! json_encode([
-            'user' => Auth::user(),
-        ]) !!}
+      {{--window.App = {!! json_encode([ 'user' => Auth::user() ]); !!}--}}
     </script>
 </head>
 <body>

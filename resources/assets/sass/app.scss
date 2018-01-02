@@ -2,7 +2,10 @@
 // Import your custom CSS after importing Bulma's initial variables
 // Import Frameworks last
 
-//@import "~bulma/sass/utilities/initial-variables";
+// Fonts
+@import "~font-awesome/scss/font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
 @import "~bulma/sass/utilities/all";
 
 // Global
@@ -20,10 +23,6 @@
 
 // Components
 @import "components";
-
-// Fonts
-@import "~font-awesome/scss/font-awesome";
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
 // Frameworks
 @import "~bulma/bulma";
