@@ -9,6 +9,7 @@ redis.subscribe('test-channel');
 
 redis.on('message', function(channel, message) {
   message = JSON.parse(message);
+  console.log('host is:', redis.options.host);
   console.log('Message received:');
   console.log('channel:', channel);
   console.log('message:', message);
