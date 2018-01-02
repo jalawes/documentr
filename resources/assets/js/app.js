@@ -34,7 +34,7 @@ Vue.component('DocumentCreate', require('./components/DocumentCreate'));
 Vue.component('Favorite', require('./components/Favorite'));
 Vue.component('markdown-sample', require('./components/MarkdownSample'));
 Vue.component('Notification', require('./components/Notification'));
-Vue.component('CodeMirror', require('./components/Documents/Codemirror'));
+Vue.component('CodeMirror', require('./components/Documents/CodeMirror'));
 Vue.component('Preview', require('./components/Documents/Preview'));
 
 // Inline Components
