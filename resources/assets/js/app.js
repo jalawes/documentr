@@ -13,7 +13,7 @@ window.Vue = require('vue');
 
 window.events = new Vue();
 
-window.socket = io(env('SERVER_IP') + ':3000');
+window.socket = io('165.227.38.186:3000');
 
 window.flash = function(message) {
   window.events.$emit('flash', message);
