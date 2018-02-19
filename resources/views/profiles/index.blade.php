@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'My Profile')
+@section('title', 'Profile')
 
 @section('content')
 
+    {{--Profile Panel--}}
     <div class="columns is-centered">
         <div class="column is-6">
             @include('profiles.top_level')
@@ -14,16 +15,19 @@
         </div>
     </div>
 
+    {{--Separate activities by date--}}
     @forelse($activities as $date => $collection)
 
+        {{--Divider--}}
         <div class="columns is-centered">
             <div class="column is-6">
-                <date date-time="{{ $date }}" inline-template>
-                    <div class="is-divider" :data-content="dayAgo"></div>
+                <date :date-time="{{ json_encode($date) }}" inline-template>
+                    <div class="is-divider" :data-content="ago"></div>
                 </date>
             </div>
         </div>
 
+        {{--Activity--}}
         @foreach($collection as $activity)
             <div class="columns is-centered">
                 <div class="column is-6">
