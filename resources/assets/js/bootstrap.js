@@ -47,9 +47,11 @@ if (token) {
 
 window.Pusher = require('pusher-js');
 
+// jam: add PUSHER_KEY from environemnt vars
+
 // window.Echo = new Echo({
 //   broadcaster: 'pusher',
-//   key: 'f3355a256293f9358fcb',
+//   key: ,
 //   cluster: 'us2',
 //   encrypted: true,
 // });

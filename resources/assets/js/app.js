@@ -13,6 +13,7 @@ window.Vue = require('vue');
 
 window.events = new Vue();
 
+// jam: pull this to environment vars
 window.socket = io('http://documentr.test:3000');
 
 window.flash = function(message) {
