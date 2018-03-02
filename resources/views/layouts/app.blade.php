@@ -12,22 +12,16 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
-    <script>
-      {{--window.App = {!! json_encode([ 'user' => Auth::user() ]); !!}--}}
-    </script>
 </head>
+
 <body>
+<div id="app" v-cloak>
     @include('layouts.partials.navbar')
-
+    <notification message="{{ session('flash') }}"></notification>
     <section class="section">
-        <div id="app" v-cloak>
-
-            <notification message="{{ session('flash') }}"></notification>
-
             @yield('content')
-        </div>
     </section>
+</div>
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
