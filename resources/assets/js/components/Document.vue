@@ -15,22 +15,25 @@
     computed: {
       ago() {
         return moment(this.attributes.created_at).fromNow();
-      }
+      },
     },
 
     methods: {
 
+      /**
+       * Delete the document.
+       */
       destroy() {
         axios.delete('/documents/' + this.attributes.id).then((response) => {
           flash('Deleted ' + this.attributes.title + '.');
           // redirect to index
-        }).catch(function (error) {
+        }).catch(function(error) {
           flash('Error');
-        });;
+        });
       },
 
       stopEditing() {
-        this.editing = false
+        this.editing = false;
       },
 
       startEditing() {
@@ -40,7 +43,7 @@
       update: _.throttle(function() {
         this.stopEditing();
         axios.patch('/documents/' + this.attributes.id, {
-          body: this.body
+          body: this.body,
         }).then((response) => {
           flash('Updated!');
         }).catch((error) => {

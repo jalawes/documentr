@@ -10,13 +10,16 @@
   export default {
     name: 'favorite',
     props: ['document'],
+
     data() {
       return {
         favoritesCount: this.document.favorites_count,
         isFavorited: this.document.isFavorited,
       };
     },
+
     computed: {
+
       icon() {
         if (this.isFavorited) {
           return 'star';
@@ -24,10 +27,12 @@
           return 'star-o';
         }
       },
+
       tooltip() {
         return 'Favorited ' + this.favoritesCount + ' times.';
       },
     },
+
     methods: {
 
       favorite() {
@@ -43,7 +48,7 @@
         } else {
           this.favorite();
         }
-      }, 300, {leading:true, trailing:false}),
+      }, 300, {leading: true, trailing: false}),
 
       unFavorite() {
         axios.delete('/documents/' + this.document.id + '/favorites');
@@ -54,7 +59,3 @@
     },
   };
 </script>
-
-<style scoped>
-
-</style>

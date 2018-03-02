@@ -7,27 +7,25 @@
 </template>
 
 <script>
-  import CodeMirror from 'codemirror'
+  import CodeMirror from 'codemirror';
 
   export default {
     name: 'code-editor',
     computed: {
-      compiled () {
-        return CodeMirror(this.textArea, this.config)
+      compiled() {
+        return CodeMirror(this.textArea, this.config);
       },
-      textArea () {
-        return document.getElementById('code')
-      }
+      textArea() {
+        return document.getElementById('code');
+      },
     },
-    data () {
+    data() {
       return {
         body: '',
-        config: {
-
-        }
-      }
-    }
-  }
+        config: {},
+      };
+    },
+  };
 </script>
 
 <style scoped>

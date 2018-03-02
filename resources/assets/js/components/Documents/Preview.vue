@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <vue-markdown :source="code" :toc="true"/>
+    <vue-markdown :source="code" :toc="true" />
   </div>
 </template>
 
@@ -10,8 +10,8 @@
     props: {
       code: {
         type: String,
-        required: true
-      }
-    }
-  }
+        required: true,
+      },
+    },
+  };
 </script>

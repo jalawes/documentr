@@ -11,26 +11,29 @@
       color: {
         type: String,
         required: false,
-        default () {
-          return ''
-        }
+        default() {
+          return '';
+        },
       },
       name: {
         type: String,
-        required: true
-      }
+        required: true,
+      },
     },
+
     computed: {
-      iconColor () {
+
+      iconColor() {
         let classes = 'icon';
         if (this.color) {
-          classes += ' ' + this.color
+          classes += ' ' + this.color;
         }
-        return classes
+        return classes;
       },
-      iconClass () {
-        return 'fa fa-' + this.name
-      }
-    }
-  }
+
+      iconClass() {
+        return 'fa fa-' + this.name;
+      },
+    },
+  };
 </script>

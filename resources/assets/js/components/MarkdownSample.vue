@@ -3,7 +3,7 @@
     <div class="column is-6">
 
       <div class="box sample" v-show="!trying" @click="startTrying">
-        <preview :code="input"/>
+        <preview :code="input" />
         <div class="field has-text-right">
           <p class="help" v-if="updatedBy">Last Updated by {{ updatedBy }}</p>
         </div>
@@ -26,24 +26,18 @@
     methods: {
 
       addUser() {
-        this.users.push(this.user)
+        this.users.push(this.user);
       },
-      update(message) {
-        console.log(message);
-        this.input = message
-        // _.debounce(function(message) {
-        //   this.sendRequest();
-        // }, 1000)
-      },
-      // update: _.debounce(function(message) {
-      //   this.input = message;
-      //   this.sendRequest();
-      // }, 1000),
+
+      update: _.debounce(function(message) {
+        this.input = message;
+        this.sendRequest();
+      }, 1000),
 
       sendRequest() {
         axios.post('/', {
           username: this.name,
-          body: this.input
+          body: this.input,
         });
       },
 
@@ -64,10 +58,10 @@
     },
     filters: {
       getInitials(name) {
-        let  initials = name.match(/\b\w/g) || [];
+        let initials = name.match(/\b\w/g) || [];
         initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
-        return initials
-      }
+        return initials;
+      },
     },
     computed: {
       user() {
@@ -82,7 +76,7 @@
           body: '',
         },
         updatedBy: '',
-        users: []
+        users: [],
       };
     },
     created() {
@@ -97,9 +91,10 @@
 
 <style scoped lang="scss">
   .code {
-    font-size:   14px !important;
+    font-size: 14px !important;
     font-family: 'Source Code Pro', monospace !important;
   }
+
   .sample {
     text-align: left;
   }

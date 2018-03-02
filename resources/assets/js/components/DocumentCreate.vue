@@ -83,8 +83,8 @@
        */
       submit() {
         axios.post('/documents', {
-          title:      this.title,
-          body:       this.body,
+          title: this.title,
+          body: this.body,
           library_id: this.library_id,
         }).then((response) => {
           flash('Published ' + this.title + '!');
