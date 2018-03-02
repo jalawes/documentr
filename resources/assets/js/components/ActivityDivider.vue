@@ -5,6 +5,6 @@
 <script>
   export default {
     name: 'ActivityDivider',
-    props: ['Date']
-  }
+    props: ['Date'],
+  };
 </script>
