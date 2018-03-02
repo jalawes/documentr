@@ -3,6 +3,7 @@
 @section('title', 'Groups')
 
 @section('content')
+    {{--todo: remove the sacffolded text--}}
     @foreach($libraries as $library)
         <div class="columns">
             <div class="column is-6 is-offset-3">
