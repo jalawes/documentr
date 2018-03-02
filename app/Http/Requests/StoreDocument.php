@@ -24,7 +24,7 @@ class StoreDocument extends FormRequest
     public function rules()
     {
         return [
-            //
+            // jam: insert rules here
         ];
     }
 }

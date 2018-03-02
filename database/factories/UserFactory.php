@@ -30,12 +30,13 @@ $factory->define(User::class, function (Faker $faker) {
     }
 
     return [
-        'avatar'     => $avatar,
+        'avatar'         => $avatar,
         'title'          => $title,
         'first_name'     => $first_name,
         'last_name'      => $faker->lastName,
         'email'          => $faker->unique()->safeEmail,
         'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'created_at'     => now()->subHours(random_int(1, 1000)),
     ];
 });
